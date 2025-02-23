@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Tech Paper Journal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">HOME</string>
+    <string name="title_library">LIBRARY</string>
     <string name="title_notifications">Notifications</string>
+    <string name="greeting_home">Hello, Reader!</string>
+    <string name="papers_label">Papers</string>
+    <string name="entries_label">Entries</string>
 </resources>

@@ -7,16 +7,86 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/greeting"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="30dp"
+        android:text="@string/greeting_home"
+        android:textSize="45sp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_button"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:padding="8dp"
+        android:insetLeft="5dp"
+        app:strokeColor="@color/brown"
+        app:strokeWidth="1dp"
+        app:icon="@drawable/ic_add"
+        app:iconSize="40dp"
+        app:iconTint="@color/beige"
+        app:iconGravity="textStart"
+        app:rippleColor="#50000000"
+        app:shapeAppearance="@style/CustomButtonShape"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/greeting" />
+
+    <TextView
+        android:id="@+id/papers_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/playfair_display_bold"
+        android:text="@string/papers_label"
+        android:textColor="@color/brown"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/add_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/papers_rv"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/papers_label" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/papers_rv"/>
+
+    <TextView
+        android:id="@+id/entries_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/playfair_display_bold"
+        android:text="@string/entries_label"
+        android:textColor="@color/brown"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/entries_rv"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entries_label" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
