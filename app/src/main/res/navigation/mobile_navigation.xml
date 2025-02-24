@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="com.example.techpaperjournal.ui.dashboard.DashboardFragment"
+        android:name="com.example.techpaperjournal.ui.library.LibraryFragment"
         android:label="@string/title_library"
         tools:layout="@layout/fragment_library" />
 </navigation>

@@ -10,5 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="brown">#3B2F2F</color>
     <color name="transparent_brown">#503B2F2F</color>
+    <color name="selected_tab">#F4F4F4</color>
     <color name="beige">#C0A080</color>
 </resources>

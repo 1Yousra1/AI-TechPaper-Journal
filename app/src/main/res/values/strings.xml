@@ -6,4 +6,5 @@
     <string name="greeting_home">Hello, Reader!</string>
     <string name="papers_label">Papers</string>
     <string name="entries_label">Entries</string>
+    <string name="add_button_description">Add paper or entry</string>
 </resources>
