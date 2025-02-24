@@ -1,2 +1,2 @@
-#Tech Paper Journal
+# Tech Paper Journal
 Tech Paper Journal is an Android application that streamlines the process of managing and interacting with academic papers. Users can upload research papers (PDFs), have the app generate AI-powered summaries, and take structured notes—all in one place. This app is designed to help researchers, students, and professionals break down complex technical documents and keep track of their insights.
