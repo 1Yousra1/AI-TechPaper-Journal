@@ -59,6 +59,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/papers_label" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No papers in list."
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/papers_rv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/papers_rv" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -90,5 +101,15 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/entries_label" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No entries in list."
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/entries_rv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/entries_rv" />
     
 </androidx.constraintlayout.widget.ConstraintLayout>
