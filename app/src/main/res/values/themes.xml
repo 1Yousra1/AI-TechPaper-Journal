@@ -21,4 +21,13 @@
         <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
+
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/brown</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cornerRadius">50dp</item>
+        <item name="android:textColor">@color/beige</item>
+        <item name="iconSize">40dp</item>
+    </style>
 </resources>

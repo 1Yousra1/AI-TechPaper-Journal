@@ -62,12 +62,13 @@
         android:layout_width="65dp"
         android:layout_height="55dp"
         android:contentDescription="@string/add_button_description"
+        android:paddingHorizontal="20dp"
         android:insetLeft="10dp"
         app:icon="@drawable/ic_search"
         app:iconGravity="textStart"
-        app:iconSize="30dp"
+        app:iconSize="28dp"
         app:iconTint="@color/beige"
-        app:rippleColor="#50000000"
+        app:rippleColor="@color/ripple_color"
         app:strokeColor="@color/brown"
         app:strokeWidth="1dp"
         app:shapeAppearance="@style/CustomButtonShape"
@@ -84,4 +85,21 @@
         app:layout_constraintTop_toBottomOf="@id/tab_bar"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/add_button_description"
+        android:src="@drawable/ic_add"
+        app:maxImageSize="40dp"
+        app:tint="@color/beige"
+        app:borderWidth="1dp"
+        android:elevation="20dp"
+        app:elevation="20dp"
+        app:shapeAppearanceOverlay="@style/CustomButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

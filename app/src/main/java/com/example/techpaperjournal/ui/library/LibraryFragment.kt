@@ -1,5 +1,8 @@
 package com.example.techpaperjournal.ui.library
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,9 +28,17 @@ class LibraryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val libraryViewModel = ViewModelProvider(this)[LibraryViewModel::class.java]
-
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.addButton.setOnClickListener {
+            val customView = LayoutInflater.from(context).inflate(R.layout.custom_add_dialog, null)
+            val dialog = AlertDialog.Builder(context)
+                .setView(customView)
+                .create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+        }
 
         replaceFragment(PapersFragment())
         binding.papersTab.setOnClickListener {
