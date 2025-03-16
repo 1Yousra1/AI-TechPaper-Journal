@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
+        android:id="@+id/no_papers_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="No papers in list."
