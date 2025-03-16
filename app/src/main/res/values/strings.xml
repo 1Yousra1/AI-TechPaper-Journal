@@ -10,4 +10,12 @@
     <string name="add_dialog_prompt">What would you like to add?</string>
     <string name="add_entry">Add Entry</string>
     <string name="upload_paper">Upload Paper</string>
+    <string name="pdf_icon">PDF Icon</string>
+    <string name="paper_title">Title of Paper</string>
+
+    <string-array name="Papers">
+        <item>Paper Title 1</item>
+        <item>Paper Title 2</item>
+        <item>Paper Title 3</item>
+    </string-array>
 </resources>

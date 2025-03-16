@@ -16,14 +16,15 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:elevation="20dp"
-            android:contentDescription="PDF Icon"
+            android:contentDescription="@string/pdf_icon"
             android:src="@drawable/ic_pdf" />
         <TextView
+            android:id="@+id/paper_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="Title of Paper"
+            android:text="@string/paper_title"
             android:textSize="16sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/brown"/>
