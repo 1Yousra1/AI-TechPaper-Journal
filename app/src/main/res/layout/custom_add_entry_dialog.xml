@@ -13,8 +13,7 @@
         android:id="@+id/dialog_prompt"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/add_dialog_prompt"
+        android:text="Add Entry"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -23,53 +22,54 @@
         android:layout_gravity="center"
         android:paddingBottom="18dp" />
 
+    <TextView
+        android:id="@+id/dropdown_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Paper"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:gravity="start"
+        android:layout_gravity="start"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="text"
+            android:hint="Enter Paper Title"
+            android:fontFamily="@font/playfair_display_semibold"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_entry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="42dp"
+        android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         android:layout_gravity="center"
         android:text="@string/add_entry"
-        android:textSize="18sp"
+        android:letterSpacing="-.001"
+        android:textSize="16sp"
         android:fontFamily="@font/playfair_display_bold"
         android:textColor="@color/brown"
         android:backgroundTint="@color/white"
-        app:icon="@drawable/ic_add_entry"
-        app:iconGravity="textStart"
-        app:iconSize="24dp"
-        app:iconTint="@color/brown"
+        android:elevation="20dp"
+        app:elevation="20dp"
         app:strokeWidth="1dp"
         app:strokeColor="@color/brown"
         app:cornerRadius="5dp" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="20dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/papers_rv"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/upload_paper_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="10dp"
-        android:layout_marginBottom="12dp"
-        android:layout_gravity="center"
-        android:text="@string/upload_paper"
-        android:fontFamily="@font/playfair_display_bold"
-        android:textSize="18sp"
-        android:textColor="@color/brown"
-        android:backgroundTint="@color/white"
-        app:icon="@drawable/ic_upload"
-        app:iconGravity="textStart"
-        app:iconSize="20dp"
-        app:iconTint="@color/brown"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/brown"
-        app:cornerRadius="5dp" />
 </LinearLayout>
