@@ -48,13 +48,14 @@ class PaperRepository {
     // Add a new paper
     suspend fun addPaper(paperUri: Uri, metadata: Map<String, String?>) : Boolean {
         return try {
-            val fileName = "papers/${System.currentTimeMillis()}.pdf"
+            val paperID = UUID.randomUUID().toString()
+            val fileName = "papers/$paperID.pdf"
             val storageRef = storage.reference.child(fileName)
             storageRef.putFile(paperUri).await()
             val pdfUrl = storageRef.downloadUrl.await().toString()
 
             val paper = Paper(
-                paperID = UUID.randomUUID().toString(),
+                paperID = paperID,
                 title = metadata["Title"] ?: "Untitled",
                 author = metadata["Author"] ?: "Unknown",
                 publishDate = metadata["Publish Date"] ?: "",
@@ -77,13 +78,13 @@ class PaperRepository {
     }*/
 
     // Delete a paper
-    suspend fun deletePaper(paperId: String) : Boolean {
-        return try {
+    suspend fun deletePaper(paperId: String) {
+        try {
             papersCollection.document(paperId).delete().await()
-            storage.reference.child("papers/$paperId").delete().await()
-            true
+            val storageRef = storage.reference.child("papers/$paperId.pdf")
+            storageRef.delete().await()
         } catch (e: Exception) {
-            false
+            e.printStackTrace()
         }
     }
 }
