@@ -48,7 +48,7 @@ class HomeViewModel : ViewModel() {
                                     title = paper.title,
                                     authors = paper.author,
                                     topics = it,
-                                    publishDate = paper.publishDate.toString(),
+                                    publishDate = paper.publishDate,
                                     summary = paper.summaryText,
                                     pdfUrl = paper.fileUrl
                                 )

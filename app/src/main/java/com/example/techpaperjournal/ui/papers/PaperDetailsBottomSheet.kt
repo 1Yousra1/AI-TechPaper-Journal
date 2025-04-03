@@ -53,7 +53,7 @@ class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialogFragm
         // Update placeholders with actual data
         binding.paperTitle.text = paper.title
         binding.paperAuthor.text = paper.author
-        binding.paperPublishDate.text = "Published: ${paper.publishDate}"
+        binding.paperPublishDate.text = paper.publishDate
         val topicList = if (paper.topic?.size!! > 4)  paper.topic.subList(0,4) + listOf("+${paper.topic.size - 4}") else paper.topic
         setTags(topicList, binding.paperTopicsContainer)
     }

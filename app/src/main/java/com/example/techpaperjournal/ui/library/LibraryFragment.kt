@@ -150,7 +150,7 @@ class LibraryFragment : Fragment() {
             val metadata = document.documentInformation
             metadataMap["Title"] = metadata.title ?: "Untitled"
             metadataMap["Author"] = metadata.author ?: "Unknown"
-            metadataMap["Topic"] = metadata.subject?.trim() ?: metadata.keywords?.trim()
+            metadataMap["Topic"] = if (metadata.subject.isNullOrBlank()) metadata.keywords else if (metadata.keywords.isNullOrBlank()) metadata.subject else null
 
             val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
             metadataMap["Publish Date"] = dateFormat.format(metadata.creationDate.time)
