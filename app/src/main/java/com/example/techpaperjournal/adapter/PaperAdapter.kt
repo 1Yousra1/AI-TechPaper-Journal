@@ -1,6 +1,7 @@
 package com.example.techpaperjournal.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.techpaperjournal.R
 import com.example.techpaperjournal.data.model.Paper
 
-class PaperAdapter (private val context: Context, private val papers: MutableList<Paper>) : RecyclerView.Adapter<PaperAdapter.PaperViewHolder>() {
+class PaperAdapter (
+    private val context: Context,
+    private var papers: MutableList<Paper>,
+    private val onPaperClick: (Paper) -> Unit,
+    private val onPaperLongClick: (Paper) -> Unit
+) : RecyclerView.Adapter<PaperAdapter.PaperViewHolder>() {
     // Add a new paper to the list and notify the adapter
     fun updatePapers(newPapers: List<Paper>) {
-
+        papers = newPapers.toMutableList()
+        notifyDataSetChanged()
     }
 
     // Inflate the item layout for each item and return a new ViewHolder
@@ -28,13 +35,23 @@ class PaperAdapter (private val context: Context, private val papers: MutableLis
 
     // Return the total number of items in the list
     override fun getItemCount(): Int {
+        Log.d("PaperAdapter", "Item count: ${papers.size}")
         return papers.size
     }
 
     // Bind the data to the corresponding UI elements in the item layout
-    class PaperViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+     inner class PaperViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(paper: Paper) {
             itemView.findViewById<TextView>(R.id.paper_title).text = paper.title
+
+            itemView.setOnClickListener {
+                onPaperClick(paper)
+            }
+
+            itemView.setOnLongClickListener {
+                onPaperLongClick(paper)
+                true
+            }
         }
     }
 }

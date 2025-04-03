@@ -12,6 +12,7 @@
     <string name="upload_paper">Upload Paper</string>
     <string name="pdf_icon">PDF Icon</string>
     <string name="paper_title">Title of Paper</string>
+    <string name="delete_dialog_prompt">Are you sure you want to delete this paper?</string>
 
     <string-array name="Papers">
         <item>Paper Title 1</item>
