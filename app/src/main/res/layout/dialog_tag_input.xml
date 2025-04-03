@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bckg_dialog"
+    android:padding="20dp"
+    android:layout_marginVertical="24dp"
+    android:layout_marginHorizontal="50dp">
+
+    <TextView
+        android:id="@+id/dialog_prompt_tag"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Add Tag"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="18dp" />
+
+    <EditText
+        android:id="@+id/tag_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter tag"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textColorHint="#40000000"
+        android:textColor="@color/beige"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:background="@drawable/bckg_input"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/negative_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="@color/brown"
+            android:textSize="18sp"
+            android:fontFamily="@font/playfair_display_bold"
+            android:backgroundTint="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/brown"
+            app:cornerRadius="5dp"
+            app:shapeAppearance="@style/CustomButtonStyle" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/positive_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/beige"
+            android:textSize="18sp"
+            android:fontFamily="@font/playfair_display_bold"
+            android:backgroundTint="@color/white"
+            app:rippleColor="#50ffffff"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/beige"
+            app:cornerRadius="5dp"
+            app:shapeAppearance="@style/CustomButtonStyle" />
+    </LinearLayout>
+</LinearLayout>

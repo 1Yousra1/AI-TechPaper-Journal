@@ -1,13 +1,66 @@
 package com.example.techpaperjournal.ui.library
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.techpaperjournal.data.model.Paper
+import com.example.techpaperjournal.data.repository.PaperRepository
+import com.example.techpaperjournal.ui.papers.PaperItemUiState
+import com.example.techpaperjournal.ui.papers.PapersViewModel
+import kotlinx.coroutines.launch
+
+data class LibraryUiState(
+    val isUploading: Boolean = false,
+    val uploadSuccess: Boolean? = null,
+    val errorMessage: String? = null,
+    val papers: List<Paper> = emptyList(),
+    val paperItemState: PaperItemUiState? = null
+)
 
 class LibraryViewModel : ViewModel() {
+    private val _uiState = MutableLiveData(LibraryUiState())
+    val uiState: LiveData<LibraryUiState> get() = _uiState
+    private val paperRepository = PaperRepository()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    // Upload a PDF file
+    fun uploadPaper(pdfUri: Uri, metadata: Map<String, String?>) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value?.copy(isUploading = true, uploadSuccess = null, errorMessage = null)
+            val success = paperRepository.addPaper(pdfUri, metadata)
+            if (success) {
+                _uiState.value = _uiState.value?.copy(isUploading = false, uploadSuccess = true)
+            } else {
+                _uiState.value = _uiState.value?.copy(isUploading = false, uploadSuccess = false, errorMessage = "Upload failed")
+            }
+        }
     }
-    val text: LiveData<String> = _text
+
+    // Fetch a specific paper
+    fun fetchPaper(paperId: String) {
+        viewModelScope.launch {
+            try {
+                paperRepository.getPaper(paperId).collect { paper ->
+                    if (paper != null) {
+                        _uiState.value = _uiState.value?.copy(
+                            paperItemState = paper.topic?.let {
+                                PaperItemUiState(
+                                    title = paper.title,
+                                    authors = paper.author,
+                                    topics = it,
+                                    publishDate = paper.publishDate.toString(),
+                                    summary = paper.summaryText,
+                                    pdfUrl = paper.fileUrl
+                                )
+                            }
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                //_paperItemState.value = PaperUiState(errorMessage = e.message)
+            }
+        }
+    }
 }
