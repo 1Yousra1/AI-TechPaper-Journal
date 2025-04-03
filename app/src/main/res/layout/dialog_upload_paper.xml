@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/dialog_background"
+    android:background="@drawable/bckg_dialog"
     android:padding="20dp"
     android:layout_marginVertical="24dp"
     android:layout_marginHorizontal="50dp">
@@ -26,6 +26,7 @@
         android:id="@+id/title_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:text="Title"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
@@ -38,24 +39,28 @@
         android:id="@+id/title_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="5dp"
         android:layout_weight="1"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints="Title"
         android:inputType="text"
         android:hint="Enter Title"
         android:textColor="@color/brown"
         android:textSize="16sp"
-        android:fontFamily="@font/playfair_display_semibold"/>
+        android:fontFamily="@font/playfair_display_semibold"
+        android:background="@drawable/bckg_input"/>
 
     <TextView
         android:id="@+id/author_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:text="Author(s)"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:gravity="start"
         android:layout_gravity="start"/>
 
@@ -63,19 +68,23 @@
         android:id="@+id/author_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="5dp"
         android:layout_weight="1"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints="Title"
         android:inputType="text"
         android:hint="Enter Author(s)"
         android:textColor="@color/brown"
-        android:textSize="19sp"
-        android:fontFamily="@font/playfair_display_semibold"/>
+        android:textSize="16sp"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:background="@drawable/bckg_input"/>
 
     <TextView
         android:id="@+id/date_published_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:text="Date Published"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
@@ -88,20 +97,23 @@
         android:id="@+id/date_published_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="5dp"
         android:layout_weight="1"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints="Title"
         android:inputType="date"
         android:hint="MM/YYYY"
         android:textColor="@color/brown"
         android:textSize="16sp"
-        android:fontFamily="@font/playfair_display_semibold"/>
+        android:fontFamily="@font/playfair_display_semibold"
+        android:background="@drawable/bckg_input"/>
 
     <TextView
         android:id="@+id/topics_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:text="Topic(s)"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
@@ -111,31 +123,40 @@
         android:layout_gravity="start"/>
 
     <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/dream_type_container"
+        android:id="@+id/topics_input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="1"
+        android:layout_gravity="center"
         app:flexWrap="wrap"
         app:justifyContent="flex_start"
         app:alignItems="center"
         app:flexDirection="row">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:paddingTop="3dp"
-            android:text="Science"
-            android:textColor="@color/beige"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:background="@drawable/topic_tag_background"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_tag_button"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconTint="@color/beige"
+            app:iconSize="30dp"
+            app:iconPadding="0dp"
+            app:strokeColor="@color/brown"
+            app:cornerRadius="5dp"
+            app:strokeWidth="1dp" />
     </com.google.android.flexbox.FlexboxLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_entry_button"
+        android:id="@+id/upload_paper_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"

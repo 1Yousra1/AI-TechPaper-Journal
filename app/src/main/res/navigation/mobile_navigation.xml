@@ -14,17 +14,17 @@
         android:id="@+id/navigation_library"
         android:name="com.example.techpaperjournal.ui.library.LibraryFragment"
         android:label="@string/title_library"
-        tools:layout="@layout/fragment_library" >
-    </fragment>
+        tools:layout="@layout/fragment_library" />
 
     <fragment
         android:id="@+id/papersFragment"
         android:name="com.example.techpaperjournal.ui.papers.PapersFragment"
-        android:label="Papers" />
+        android:label="Papers"
+        tools:layout="@layout/fragment_papers"/>
 
     <fragment
         android:id="@+id/entriesFragment"
         android:name="com.example.techpaperjournal.ui.entries.EntriesFragment"
-        android:label="Entries" >
-    </fragment>
+        android:label="Entries"
+        tools:layout="@layout/fragment_entries"/>
 </navigation>

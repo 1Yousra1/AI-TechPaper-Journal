@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/dialog_background"
+    android:background="@drawable/bckg_dialog"
     android:padding="20dp"
     android:layout_marginVertical="24dp"
     android:layout_marginHorizontal="50dp">

@@ -6,7 +6,7 @@
     android:paddingHorizontal="20dp"
     android:elevation="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/entry_background">
+    android:background="@drawable/bckg_entry">
     <TextView
         android:id="@+id/entry_title"
         android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
             android:textSize="14dp"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"
-            android:background="@drawable/topic_tag_background"/>
+            android:background="@drawable/bckg_topic_tag"/>
         <TextView
             android:id="@+id/topic_2"
             android:layout_width="wrap_content"
@@ -75,6 +75,6 @@
             android:textSize="14dp"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"
-            android:background="@drawable/topic_tag_background"/>
+            android:background="@drawable/bckg_topic_tag"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
