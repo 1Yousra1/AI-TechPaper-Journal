@@ -1,5 +1,6 @@
 package com.example.techpaperjournal.ui.home
 
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -7,13 +8,17 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -31,9 +36,14 @@ import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.button.MaterialButton
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 import com.tom_roush.pdfbox.pdmodel.PDDocument
+import com.tom_roush.pdfbox.text.PDFTextStripper
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Locale
+
 
 // Request code for selecting a PDF document.
 const val PICK_PDF_FILE = 2
@@ -44,11 +54,12 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
     private lateinit var homeViewModel : HomeViewModel
-    private val metadataMap = mutableMapOf<String, String?>()
+    private val paperDetailsMap = mutableMapOf<String, String?>()
 
     private lateinit var papersRecyclerView: RecyclerView
     private lateinit var paperAdapter: PaperAdapter
     private lateinit var papersViewModel: PapersViewModel
+    private var lastPaperCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -129,7 +140,7 @@ class HomeFragment : Fragment() {
                     .setView(addPaperView)
                     .create()
                 paperDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                extractPaperMetadata(uri)
+                extractPaperDetails(uri)
                 populatePaperDialog(addPaperView)
                 paperDialog.show()
                 addPaperView.findViewById<MaterialButton>(R.id.add_tag_button).setOnClickListener {
@@ -137,26 +148,34 @@ class HomeFragment : Fragment() {
                 }
                 addPaperView.findViewById<MaterialButton>(R.id.upload_paper_button).setOnClickListener {
                     getUpdatedMetadata(addPaperView)
-                    homeViewModel.uploadPaper(uri, metadataMap)
+                    showUploadDialog()
+                    homeViewModel.uploadPaper(uri, paperDetailsMap)
                     paperDialog.dismiss()
                 }
             }
         }
     }
 
-    // Extract the metadata from the PDF
-    private fun extractPaperMetadata(paperUri: Uri) {
+    // Extract the details from the PDF
+    private fun extractPaperDetails(paperUri: Uri) {
         PDFBoxResourceLoader.init(context)
         requireContext().contentResolver.openInputStream(paperUri)?.use { input ->
             val document: PDDocument = PDDocument.load(input)
             val metadata = document.documentInformation
-            metadataMap["Title"] = metadata.title ?: "Untitled"
-            metadataMap["Author"] = metadata.author ?: "Unknown"
-            metadataMap["Topic"] = if (metadata.subject.isNullOrBlank()) metadata.keywords else if (metadata.keywords.isNullOrBlank()) metadata.subject else null
+            paperDetailsMap["Title"] = metadata.title ?: "Untitled"
+            paperDetailsMap["Author"] = metadata.author ?: "Unknown"
+            paperDetailsMap["Topic"] = if (metadata.subject.isNullOrBlank()) metadata.keywords else if (metadata.keywords.isNullOrBlank()) metadata.subject else null
+            paperDetailsMap["Pages"] = document.numberOfPages.toString()
 
             val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
-            metadataMap["Publish Date"] = dateFormat.format(metadata.creationDate.time)
+            paperDetailsMap["Publish Date"] = dateFormat.format(metadata.creationDate.time)
+
+            val pdfStripper = PDFTextStripper()
+            pdfStripper.startPage = 0
+            pdfStripper.endPage = document.numberOfPages - 1
+            paperDetailsMap["Content"] = pdfStripper.getText(document)
             document.close()
+            Log.d("paperDetailsMap", paperDetailsMap.toString())
         }
     }
 
@@ -167,10 +186,10 @@ class HomeFragment : Fragment() {
         val datePublishedEditText = view.findViewById<EditText>(R.id.date_published_input)
         val container = view.findViewById<FlexboxLayout>(R.id.topics_input_container)
 
-        titleEditText.setText(metadataMap["Title"] ?: "Untitled")
-        authorEditText.setText(metadataMap["Author"] ?: "Unknown")
-        datePublishedEditText.setText(metadataMap["Publish Date"] ?: "")
-        metadataMap["Topic"]?.split(",")?.forEach { topic ->
+        titleEditText.setText(paperDetailsMap["Title"] ?: "Untitled")
+        authorEditText.setText(paperDetailsMap["Author"] ?: "Unknown")
+        datePublishedEditText.setText(paperDetailsMap["Publish Date"] ?: "")
+        paperDetailsMap["Topic"]?.split(",")?.forEach { topic ->
             val tagView = TextView(context).apply {
                 text = topic
                 setPadding(20, 10, 20, 10)
@@ -183,7 +202,7 @@ class HomeFragment : Fragment() {
                     showEditDialog(topic) { editedTopic -> text = editedTopic }
                 }
                 setOnLongClickListener {
-                    metadataMap["Topic"]?.let { it1 -> metadataMap["Topic"]?.drop(it1.indexOf(topic)) }
+                    paperDetailsMap["Topic"]?.let { it1 -> paperDetailsMap["Topic"]?.drop(it1.indexOf(topic)) }
                     container.removeView(this)
                     true
                 }
@@ -207,9 +226,9 @@ class HomeFragment : Fragment() {
         val authorEditText = view.findViewById<EditText>(R.id.author_input)
         val datePublishedEditText = view.findViewById<EditText>(R.id.date_published_input)
 
-        metadataMap["Title"] = titleEditText.text.toString()
-        metadataMap["Author"] = authorEditText.text.toString()
-        metadataMap["Publish Date"] = datePublishedEditText.text.toString()
+        paperDetailsMap["Title"] = titleEditText.text.toString()
+        paperDetailsMap["Author"] = authorEditText.text.toString()
+        paperDetailsMap["Publish Date"] = datePublishedEditText.text.toString()
 
     }
 
@@ -229,7 +248,7 @@ class HomeFragment : Fragment() {
         positiveButton.setOnClickListener {
             val topic = inputField.text.toString().trim()
             if (topic.isNotEmpty()) {
-                metadataMap["Topic"] = (metadataMap["Topic"] ?: "") + ", $topic"
+                paperDetailsMap["Topic"] = (paperDetailsMap["Topic"] ?: "") + ", $topic"
                 addTagToContainer(container, topic)
             }
             dialog.dismiss()
@@ -255,7 +274,7 @@ class HomeFragment : Fragment() {
                 showEditDialog(topic) { editedTopic -> text = editedTopic }
             }
             setOnLongClickListener {
-                metadataMap["Topic"]?.let { it1 -> metadataMap["Topic"]?.drop(it1.indexOf(topic)) }
+                paperDetailsMap["Topic"]?.let { it1 -> paperDetailsMap["Topic"]?.drop(it1.indexOf(topic)) }
                 container.removeView(this)
                 true
             }
@@ -290,7 +309,7 @@ class HomeFragment : Fragment() {
         positiveButton.setOnClickListener {
             val editedTopic = inputField.text.toString().trim()
             if (editedTopic.isNotEmpty()) {
-                metadataMap["Topic"] = (metadataMap["Topic"] ?: topic).replace(topic, editedTopic)
+                paperDetailsMap["Topic"] = (paperDetailsMap["Topic"] ?: topic).replace(topic, editedTopic)
                 onTopicUpdated(editedTopic)
             }
             dialog.dismiss()
@@ -322,6 +341,62 @@ class HomeFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    private fun showUploadDialog() {
+        val customView = layoutInflater.inflate(R.layout.dialog_progress_bar, null)
+        val icon = customView.findViewById<ImageView>(R.id.pdf_icon)
+        val progressBar = customView.findViewById<ProgressBar>(R.id.progress_bar)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(customView)
+            .setCancelable(false)
+            .create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+        Toast.makeText(requireContext(), "Dialog shown", Toast.LENGTH_SHORT).show()
+
+        var startedAnimation = false
+
+        homeViewModel.uiState.observe(viewLifecycleOwner) { state ->
+            if (state.isUploading && !startedAnimation) {
+                startedAnimation = true
+
+                val animator = ValueAnimator.ofInt(0, 100)
+                animator.duration = 10000
+                animator.addUpdateListener {
+                    val progress = it.animatedValue as Int
+                    progressBar.progress = progress
+
+                    val progressRatio = progress / 100f
+                    val maxTranslation = progressBar.width - icon.width
+                    icon.translationX = maxTranslation * progressRatio
+                }
+                animator.start()
+            }
+
+            if (state.uploadSuccess == true) {
+                dialog.dismiss()
+                lifecycleScope.launch {
+                    papersViewModel.paperListState.observe(viewLifecycleOwner) { uiState ->
+                        val papers = uiState.papers
+
+                        if (papers.size > lastPaperCount && papers.isNotEmpty()) {
+                            PaperDetailsBottomSheet(papers.first()).show(
+                                childFragmentManager,
+                                PaperDetailsBottomSheet.TAG
+                            )
+                        }
+                        lastPaperCount = papers.size
+                    }
+                }
+            }
+
+            if (state.uploadSuccess == false) {
+                dialog.dismiss()
+                Toast.makeText(requireContext(), state.errorMessage ?: "Upload failed", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
