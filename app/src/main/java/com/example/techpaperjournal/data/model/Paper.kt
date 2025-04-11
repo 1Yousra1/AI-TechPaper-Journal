@@ -9,6 +9,7 @@ data class Paper(
     val publishDate: String = "",
     val uploadDate: Timestamp = Timestamp.now(),
     val topic: List<String>? = null,
+    val numOfPages: Int = 1,
     val fileUrl: String = "",
     val summaryText: String = ""
 )
