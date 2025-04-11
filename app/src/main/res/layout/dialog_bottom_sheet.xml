@@ -44,7 +44,7 @@
         android:layout_marginStart="100dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="end"
-        android:text="Published in "
+        android:text="Published "
         android:textAlignment="textEnd"
         android:textColor="@color/brown"
         android:textSize="12sp"
@@ -63,7 +63,7 @@
         android:text="January 2025"
         android:textAlignment="textStart"
         android:textColor="@color/beige"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/paper_author"
         app:layout_constraintStart_toEndOf="@id/publish_label"
         app:layout_constraintTop_toBottomOf="@id/paper_author" />
@@ -143,6 +143,8 @@
         android:textColor="@color/brown"
         android:textAlignment="textStart"
         android:fontFamily="@font/poppins_medium"
+        android:maxLines="15"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/paper_topics_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -160,7 +162,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/negative_button"
+            android:id="@+id/read_paper_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="8dp"
@@ -169,14 +171,14 @@
             android:text="Read Paper"
             android:textColor="@color/brown"
             android:textSize="18sp"
-            android:elevation="2dp"
+            android:elevation="3dp"
             app:cornerRadius="5dp"
-            app:shapeAppearance="@style/CustomButtonStyle"
+            app:rippleColor="#50000000"
             app:strokeColor="@color/brown"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/positive_button"
+            android:id="@+id/open_entry_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -184,13 +186,13 @@
             android:backgroundTint="@color/white"
             android:fontFamily="@font/playfair_display_bold"
             android:text="Open Entry"
-            android:textColor="@color/brown"
+            android:textColor="#70000000"
             android:textSize="18sp"
-            android:elevation="2dp"
+            android:elevation="3dp"
+            android:enabled="false"
             app:cornerRadius="5dp"
-            app:rippleColor="#50ffffff"
-            app:shapeAppearance="@style/CustomButtonStyle"
-            app:strokeColor="@color/brown"
+            app:rippleColor="#70ffffff"
+            app:strokeColor="#70000000"
             app:strokeWidth="1dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
