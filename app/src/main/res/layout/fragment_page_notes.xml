@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <jp.wasabeef.richeditor.RichEditor
+        android:id="@+id/notes_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:background="@color/beige"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/action_back"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_back" />
+
+            <ImageButton
+                android:id="@+id/action_undo"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_undo" />
+
+            <ImageButton
+                android:id="@+id/action_redo"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_redo" />
+
+            <ImageButton
+                android:id="@+id/action_edit"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_edit" />
+
+            <ImageButton
+                android:id="@+id/action_erase"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_erase" />
+
+            <ImageButton
+                android:id="@+id/action_bold"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_bold" />
+
+            <ImageButton
+                android:id="@+id/action_italic"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_italic" />
+
+            <ImageButton
+                android:id="@+id/action_subscript"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_subscript" />
+
+            <ImageButton
+                android:id="@+id/action_superscript"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_superscript" />
+
+            <ImageButton
+                android:id="@+id/action_strikethrough"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_strikethrough" />
+
+            <ImageButton
+                android:id="@+id/action_underline"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_underline" />
+
+            <ImageButton
+                android:id="@+id/action_txt_color"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_text_color" />
+
+            <ImageButton
+                android:id="@+id/action_bg_color"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_highlighter" />
+
+            <ImageButton
+                android:id="@+id/action_heading1"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading" />
+
+            <ImageButton
+                android:id="@+id/action_heading2"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading2" />
+
+            <ImageButton
+                android:id="@+id/action_heading3"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading3" />
+
+            <ImageButton
+                android:id="@+id/action_heading4"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading4" />
+
+            <ImageButton
+                android:id="@+id/action_heading5"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading5" />
+
+            <ImageButton
+                android:id="@+id/action_heading6"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_heading6" />
+
+            <ImageButton
+                android:id="@+id/action_indent"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_indent" />
+
+            <ImageButton
+                android:id="@+id/action_outdent"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_outdent" />
+
+            <ImageButton
+                android:id="@+id/action_align_left"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_left_alignment" />
+
+            <ImageButton
+                android:id="@+id/action_align_center"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_center_alignment" />
+
+            <ImageButton
+                android:id="@+id/action_align_right"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_right_alignment" />
+
+            <ImageButton
+                android:id="@+id/action_insert_bullets"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_bullets" />
+
+            <ImageButton
+                android:id="@+id/action_insert_numbers"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_numbers" />
+
+            <ImageButton
+                android:id="@+id/action_blockquote"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="15dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_blockquote" />
+
+            <ImageButton
+                android:id="@+id/action_insert_link"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_link" />
+
+            <ImageButton
+                android:id="@+id/action_insert_checkbox"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="13dp"
+                android:background="@drawable/bckg_editor"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/editor_checkbox" />
+        </LinearLayout>
+    </HorizontalScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

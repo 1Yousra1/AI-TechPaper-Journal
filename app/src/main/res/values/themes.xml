@@ -30,4 +30,10 @@
         <item name="android:textColor">@color/beige</item>
         <item name="iconSize">40dp</item>
     </style>
+
+    <style name="CustomExposedDropdownStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/beige</item>
+        <item name="boxBackgroundColor">@color/white</item>
+    </style>
+
 </resources>
