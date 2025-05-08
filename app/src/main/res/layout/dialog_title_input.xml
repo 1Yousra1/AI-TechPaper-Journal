@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bckg_dialog"
+    android:padding="20dp"
+    android:layout_marginHorizontal="50dp">
+
+    <TextView
+        android:id="@+id/dialog_prompt"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Add Page"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:id="@+id/title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Title"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:gravity="start"
+        android:layout_gravity="start"/>
+
+    <EditText
+        android:id="@+id/title_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="5dp"
+        android:layout_weight="1"
+        android:autofillHints="Title"
+        android:inputType="text"
+        android:hint="Enter Title"
+        android:textColor="@color/brown"
+        android:textSize="16sp"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:background="@drawable/bckg_input"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_title_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_gravity="center"
+        android:text="Add Page"
+        android:textSize="16sp"
+        android:fontFamily="@font/playfair_display_bold"
+        android:textColor="@color/brown"
+        android:backgroundTint="@color/white"
+        android:elevation="20dp"
+        app:elevation="20dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/brown"
+        app:cornerRadius="5dp" />
+
+</LinearLayout>
