@@ -50,37 +50,45 @@ android {
 }
 
 dependencies {
+    // Core Android Libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.storage.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.androidx.lifecycle.livedata.ktx.v262)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx.v287)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
-    //flexbox
-    implementation(libs.google.flexbox)
-    //pdfbox
-    implementation(libs.tom.roush.pdfbox.android)
-    //retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.okhttp)
-    implementation(libs.kotlinx.serialization.json)
 
+    // Lifecycle & ViewModel (KTX Extensions)
+    implementation(libs.androidx.lifecycle.livedata.ktx) // LiveData support
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // ViewModel support
+    implementation(libs.androidx.lifecycle.runtime.ktx) // Lifecycle-aware coroutines
+
+    // Navigation Component
+    implementation(libs.androidx.navigation.fragment.ktx) // Navigation support for Fragments
+    implementation(libs.androidx.navigation.ui.ktx) // UI Navigation helpers (e.g. BottomNav)
+
+    // Firebase (Bill of Materials manages versions for you)
+    implementation(platform(libs.firebase.bom)) // BoM for Firebase
+    implementation(libs.firebase.analytics) // Firebase Analytics
+    implementation(libs.firebase.firestore) // Firestore database
+    implementation(libs.firebase.storage.ktx) // Firebase Storage (KTX)
+
+    // Kotlin Coroutines
+    implementation(libs.kotlinx.coroutines.core) // Core coroutines
+    implementation(libs.kotlinx.coroutines.android) // Android-specific coroutines
+
+    // Network (Retrofit + OkHttp + Gson)
+    implementation(libs.retrofit) // Retrofit HTTP client
+    implementation(libs.converter.gson) // Retrofit converter for JSON
+    implementation(libs.okhttp) // OkHttp networking
+    implementation(libs.kotlinx.serialization.json) // Kotlinx serialization
+
+    // UI Utilities
+    implementation(libs.google.flexbox) // Flexbox layout
+    implementation(libs.tom.roush.pdfbox.android) // PDFBox for PDF metadata parsing
+    implementation(libs.richeditor.android) // Rich text editor
+    implementation(libs.github.colorpicker) // Color picker
+
+    // Testing
+    testImplementation(libs.junit) // Unit testing
+    androidTestImplementation(libs.androidx.junit) // Android JUnit support
+    androidTestImplementation(libs.androidx.espresso.core) // UI testing with Espresso
 }

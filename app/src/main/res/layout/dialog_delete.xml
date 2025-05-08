@@ -13,12 +13,24 @@
         android:id="@+id/dialog_prompt"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/delete_dialog_prompt"
+        android:layout_marginBottom="8dp"
+        android:text="Delete Paper"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
         android:textSize="22sp"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/delete_dialog_prompt"
+        android:textColor="@color/beige"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="14sp"
         android:gravity="center"
         android:layout_gravity="center" />
 
@@ -27,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="16dp">
+        android:paddingTop="10dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/negative_button"

@@ -13,10 +13,4 @@
     <string name="pdf_icon">PDF Icon</string>
     <string name="paper_title">Title of Paper</string>
     <string name="delete_dialog_prompt">Are you sure you want to delete this paper?</string>
-
-    <string-array name="Papers">
-        <item>Paper Title 1</item>
-        <item>Paper Title 2</item>
-        <item>Paper Title 3</item>
-    </string-array>
 </resources>

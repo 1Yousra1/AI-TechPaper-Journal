@@ -1,4 +1,4 @@
-package com.example.techpaperjournal.data.openai
+package com.example.techpaperjournal.core.openai
 
 import com.example.techpaperjournal.BuildConfig
 import retrofit2.http.Body

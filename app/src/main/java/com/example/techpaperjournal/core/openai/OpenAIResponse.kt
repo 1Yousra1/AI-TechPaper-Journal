@@ -1,4 +1,4 @@
-package com.example.techpaperjournal.data.openai
+package com.example.techpaperjournal.core.openai
 
 data class OpenAIResponse(
     val choices: List<OpenAIChoice>

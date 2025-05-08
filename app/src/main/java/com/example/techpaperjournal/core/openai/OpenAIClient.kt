@@ -1,4 +1,4 @@
-package com.example.techpaperjournal.data.openai
+package com.example.techpaperjournal.core.openai
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
