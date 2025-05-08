@@ -1,11 +1,11 @@
-package com.example.techpaperjournal.data.repository
+package com.example.techpaperjournal.core.repository
 
 import android.net.Uri
 import android.util.Log
-import com.example.techpaperjournal.data.openai.OpenAIClient
-import com.example.techpaperjournal.data.openai.Message
-import com.example.techpaperjournal.data.openai.OpenAIRequest
-import com.example.techpaperjournal.data.model.Paper
+import com.example.techpaperjournal.core.openai.OpenAIClient
+import com.example.techpaperjournal.core.openai.Message
+import com.example.techpaperjournal.core.openai.OpenAIRequest
+import com.example.techpaperjournal.core.model.Paper
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -18,12 +18,10 @@ import kotlinx.coroutines.tasks.await
 import retrofit2.HttpException
 import java.util.UUID
 
-
 class PaperRepository {
     private val db = FirebaseFirestore.getInstance()
     private val papersCollection = db.collection("papers")
     private val storage = FirebaseStorage.getInstance()
-
 
     // Fetch all papers
     fun getPapers(): Flow<List<Paper>> = callbackFlow {
@@ -32,14 +30,11 @@ class PaperRepository {
                 trySend(emptyList())
                 return@addSnapshotListener
             }
-
             val papers = snapshot?.toObjects(Paper::class.java) ?: emptyList()
             trySend(papers)
         }
-
         awaitClose { listener.remove() }
     }
-
 
     // Fetch a specific paper
      fun getPaper(id: String): Flow<Paper?> = flow {
@@ -54,7 +49,7 @@ class PaperRepository {
     // Add a new paper
     suspend fun addPaper(paperUri: Uri, details: Map<String, String?>) : Boolean {
         return try {
-            val paperID = UUID.randomUUID().toString()
+            val paperID = details["PaperID"]
             val fileName = "papers/$paperID.pdf"
             val storageRef = storage.reference.child(fileName)
             storageRef.putFile(paperUri).await()
@@ -67,10 +62,10 @@ class PaperRepository {
             }
 
             val paper = Paper(
-                paperID = paperID,
+                paperID = paperID ?: UUID.randomUUID().toString(),
                 title = details["Title"] ?: "Untitled",
                 author = details["Author"] ?: "Unknown",
-                publishDate = details["Publish Date"] ?: "",
+                publishDate = details["Publish Date"] ?: "Unknown",
                 uploadDate = Timestamp.now(),
                 topic = if (details["Topic"]?.isBlank() == true)  null else details["Topic"]?.split(","),
                 numOfPages = details["Pages"].toString().toInt(),
@@ -80,31 +75,37 @@ class PaperRepository {
             papersCollection.document(paper.paperID).set(paper).await()
             true
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("PaperRepository", "Error adding paper: ${e.message}", e)
             false
         }
     }
 
+    // Check if paper already exists
+    suspend fun isDuplicatePaper(paperId: String): Boolean {
+        val snapshot = papersCollection.whereEqualTo("paperID", paperId).get().await()
+        return !snapshot.isEmpty
+    }
 
-    /* Update an existing paper
-    suspend fun updatePaper(paper: Paper) : Boolean {
-    }*/
+    // Update an existing paper
+    suspend fun updatePaper(paperId: String, paperDetails: Map<String, Any?>) {
+        papersCollection.document(paperId).update(paperDetails).await()
+    }
 
     // Delete a paper
     suspend fun deletePaper(paperId: String) {
         try {
             papersCollection.document(paperId).delete().await()
-            val storageRef = storage.reference.child("papers/$paperId.pdf")
-            storageRef.delete().await()
+            storage.reference.child("papers/$paperId.pdf").delete().await()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("PaperRepository", "Error deleting paper: ${e.message}", e)
         }
     }
 
-    suspend fun generateSummary(content: String): String? {
-        val safeContent = content.take(4000) // Roughly within OpenAI’s input limits
+    // Generate a summary of the paper's content
+    private suspend fun generateSummary(content: String): String? {
+        val safeContent = content.take(5000)
         val messages = listOf(
-            Message(role = "user", content = "Summarize the following text in 200 words: $safeContent")
+            Message(role = "user", content = "Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining clarity and conciseness of this paper: $safeContent")
         )
 
         val request = OpenAIRequest(

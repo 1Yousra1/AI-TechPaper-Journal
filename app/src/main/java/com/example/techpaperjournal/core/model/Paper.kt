@@ -1,4 +1,4 @@
-package com.example.techpaperjournal.data.model
+package com.example.techpaperjournal.core.model
 
 import com.google.firebase.Timestamp
 
