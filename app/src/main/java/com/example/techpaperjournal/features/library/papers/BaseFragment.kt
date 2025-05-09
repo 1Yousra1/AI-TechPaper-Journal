@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techpaperjournal.R
+import com.example.techpaperjournal.core.model.Paper
 import com.example.techpaperjournal.features.journal.pages.PagesViewModel
 import com.example.techpaperjournal.features.library.entries.EntriesViewModel
 import com.example.techpaperjournal.features.library.entries.EntryAdapter
@@ -51,10 +52,13 @@ abstract class BaseFragment: Fragment() {
     lateinit var papersRecyclerView: RecyclerView
     lateinit var paperAdapter: PaperAdapter
     lateinit var entriesRecyclerView: RecyclerView
-    private lateinit var entryAdapter: EntryAdapter
+    lateinit var entryAdapter: EntryAdapter
 
     private val paperDetailsMap = mutableMapOf<String, String?>()
     private var lastPaperCount = 0
+
+    var originalPapers: List<Paper> = emptyList()
+    var originalEntries: List<EntryWithPaper> = emptyList()
 
     /** --------------- Setup Methods --------------- **/
 
@@ -99,6 +103,7 @@ abstract class BaseFragment: Fragment() {
     fun observePaperViewModel(noPapersTv: TextView, isHome: Boolean) {
         //var papers: List<Paper>
         papersViewModel.paperListState.observe(viewLifecycleOwner) { uiState ->
+            originalPapers = uiState.papers
             val papers = if (isHome) uiState.papers.take(8) else uiState.papers
             paperAdapter.updatePapers(papers)
 
@@ -114,6 +119,7 @@ abstract class BaseFragment: Fragment() {
     fun observeEntryViewModel(noEntriesTv: TextView, isHome: Boolean) {
         var entries: List<EntryWithPaper>
         entriesViewModel.entryListState.observe(viewLifecycleOwner) { uiState ->
+            originalEntries = uiState.entriesWithPapers
             entries = if (isHome) uiState.entriesWithPapers.take(8) else uiState.entriesWithPapers
             entryAdapter.updateEntries(entries)
 

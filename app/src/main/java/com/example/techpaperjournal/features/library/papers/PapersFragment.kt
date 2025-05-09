@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.techpaperjournal.databinding.FragmentLibraryPapersBinding
 import com.example.techpaperjournal.features.journal.pages.PagesViewModel
+import com.example.techpaperjournal.features.library.Searchable
 import com.example.techpaperjournal.features.library.entries.EntriesViewModel
 
-class PapersFragment : BaseFragment() {
+class PapersFragment : BaseFragment(), Searchable {
     private var _binding: FragmentLibraryPapersBinding? = null
     private val binding get() = _binding!!
 
@@ -33,6 +33,13 @@ class PapersFragment : BaseFragment() {
         observePaperViewModel(binding.noPapersTv, false)
 
         return root
+    }
+
+    override fun search(query: String) {
+        val filteredPapers = originalPapers.filter {
+            it.title.contains(query, true) || it.author.contains(query, true)
+        }
+        paperAdapter.updatePapers(filteredPapers)
     }
 
     override fun onDestroyView() {
