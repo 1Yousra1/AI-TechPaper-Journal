@@ -44,11 +44,13 @@ class EntriesViewModel : ViewModel() {
     private val entryRepository = EntryRepository()
     private val paperRepository = PaperRepository()
 
+    // Update the current filter option
     fun setFilter(filter: String) {
         _filterState.value = _filterState.value?.copy(lastFilterChecked = filter)
         applyFiltersAndSort()
     }
 
+    // Update the current sort option
     fun setSort(sort: String) {
         _filterState.value = _filterState.value?.copy(lastSortChecked = sort)
         applyFiltersAndSort()
@@ -88,12 +90,14 @@ class EntriesViewModel : ViewModel() {
         }
     }
 
+    // Apply filters and sort to entries
     private fun applyFiltersAndSort() {
         val filtered = applyFilters()
         val sorted = applySort(filtered)
         _entryListState.value = _entryListState.value?.copy(entriesWithPapers = sorted)
     }
 
+    // Apply filters to entries
     private fun applyFilters(): List<EntryWithPaper> {
         return when (_filterState.value?.lastFilterChecked ?: "all") {
             "all" -> originalEntries
@@ -109,6 +113,7 @@ class EntriesViewModel : ViewModel() {
         }
     }
 
+    // Apply sort to entries
     private fun applySort(entries: List<EntryWithPaper>): List<EntryWithPaper> {
         return when (_filterState.value?.lastSortChecked ?: "accessed") {
             "accessed" -> entries.sortedByDescending { it.entry.lastUpdated }

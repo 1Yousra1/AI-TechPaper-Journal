@@ -133,6 +133,7 @@ class LibraryFragment : BaseFragment() {
         }
     }
 
+    // Shows filter/sort dialog and handles user selection
     private fun setupFilterAndSort() {
         binding.filterButton.setOnClickListener {
             val view = LayoutInflater.from(context).inflate(R.layout.dialog_filter, null)
@@ -175,6 +176,7 @@ class LibraryFragment : BaseFragment() {
         }
     }
 
+    // Extract filter and sort options from the view
     private fun getFilterAndSortOptions(view: View) {
         val filterGroup = view.findViewById<RadioGroup>(R.id.filter_radio_group)
         val topicInput = view.findViewById<TextView>(R.id.topic_input)
@@ -193,13 +195,18 @@ class LibraryFragment : BaseFragment() {
             R.id.sort_title -> { lastSortChecked = "title"; "title" }
             else -> "accessed"
         }
+
+        // Update viemodels with new selections
         papersViewModel.setFilter(filterOption)
         papersViewModel.setSort(sortOption)
         entriesViewModel.setFilter(filterOption)
         entriesViewModel.setSort(sortOption)
+
+        // Apply changes to current fragment
         performFilterSort(filterOption, sortOption)
     }
 
+    // Apply filter and sort options to current fragment
     private fun performFilterSort(filterOpt: String, sortOpt: String) {
         val filterOption = filterOpt.trim()
         val sortOption = sortOpt.trim()

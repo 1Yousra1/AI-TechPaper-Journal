@@ -26,16 +26,15 @@ class PapersFragment : BaseFragment(), Searchable, FilterAndSortable {
         _binding = FragmentLibraryPapersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Set up the recycler view
         papersRecyclerView = binding.papersRv
         setupPaperRecyclerView(false)
 
-        // Observe the view model
         observePaperViewModel(binding.noPapersTv, false)
 
         return root
     }
 
+    // Search papers by title or author
     override fun search(query: String) {
         val filteredPapers = originalPapers.filter {
             it.title.contains(query, true) || it.author.contains(query, true)
@@ -43,10 +42,12 @@ class PapersFragment : BaseFragment(), Searchable, FilterAndSortable {
         paperAdapter.updatePapers(filteredPapers)
     }
 
+    // Update the viewmodel with the filter option
     override fun filter(option: String) {
         papersViewModel.setFilter(option)
     }
 
+    // Update the viewmodel with the sort option
     override fun sort(option: String) {
         papersViewModel.setSort(option)
     }

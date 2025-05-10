@@ -31,6 +31,7 @@ class EntriesFragment : BaseFragment(), Searchable, FilterAndSortable {
         return root
     }
 
+    // Search entries by paper title or author
     override fun search(query: String) {
         val filteredEntries = originalEntries.filter {
             it.paper.title.contains(query, true) || it.paper.author.contains(query, true)
@@ -38,10 +39,12 @@ class EntriesFragment : BaseFragment(), Searchable, FilterAndSortable {
         entryAdapter.updateEntries(filteredEntries)
     }
 
+    // Update the viewmodel with the filter option
     override fun filter(option: String) {
         entriesViewModel.setFilter(option)
     }
 
+    // Update the viewmodel with the sort option
     override fun sort(option: String) {
         entriesViewModel.setSort(option)
     }
