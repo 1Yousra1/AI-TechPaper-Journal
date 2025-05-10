@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.techpaperjournal.core.model.Page
 
 class PageViewAdapter(
-    private val entryId: String?,
+    private val entryId: String,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -19,7 +19,6 @@ class PageViewAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (pages[position].type) {
             "about" -> AboutPageFragment()
-            //"prompt" -> PromptPageFragment()
             else -> NotesPageFragment()
         }.apply {
             arguments = bundleOf(

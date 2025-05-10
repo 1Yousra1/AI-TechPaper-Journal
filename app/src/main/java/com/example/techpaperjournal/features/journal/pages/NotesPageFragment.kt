@@ -29,8 +29,9 @@ class NotesPageFragment: Fragment() {
 
     private lateinit var pagesViewModel: PagesViewModel
     private lateinit var entriesViewModel: EntriesViewModel
-    private val entryId = arguments?.getString("entryId")
-    private val pageId = arguments?.getString("pageId")
+
+    private fun getEntryId(): String = arguments?.getString("entryId")!!
+    private fun getPageId(): String = arguments?.getString("pageId")!!
 
     private lateinit var mEditor: RichEditor
     private var autoSaveJob: Job? = null
@@ -61,7 +62,7 @@ class NotesPageFragment: Fragment() {
 
     // Observe the page content and update the editor
     private fun observePageContent() {
-        if (pageId != null) pagesViewModel.fetchPage(pageId)
+        pagesViewModel.fetchPage(getPageId())
         pagesViewModel.uiState.observe(viewLifecycleOwner) { pageUiState ->
             val page = pageUiState.page
             if (page != null) {
@@ -73,11 +74,8 @@ class NotesPageFragment: Fragment() {
             autoSaveJob?.cancel()
             autoSaveJob = lifecycleScope.launch {
                 delay(2000)
-                if (pageId != null) {
-                    pagesViewModel.saveNote(pageId, text)
-                    entriesViewModel.updateEntryLastUpdated(entryId!!)
-                }
-
+                pagesViewModel.saveNote(getPageId(), text)
+                entriesViewModel.updateEntryLastUpdated(getEntryId())
             }
         }
     }

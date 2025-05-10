@@ -33,8 +33,9 @@ class PageContentFragment: Fragment() {
     private lateinit var papersViewModel: PapersViewModel
     private lateinit var pagesViewModel: PagesViewModel
 
-    private val entryId = arguments?.getString("entryId")
-    private val selectedPageId = arguments?.getString("selectedPageId")
+    private fun getEntryId(): String = arguments?.getString("entryId")!!
+    private fun getSelectedPageId(): String? = arguments?.getString("selectedPageId")
+
     private lateinit var pageAdapter: PageViewAdapter
     private lateinit var pageContainer: ViewPager2
 
@@ -52,14 +53,14 @@ class PageContentFragment: Fragment() {
     // Set up the page view
     private fun setupPageView() {
         pageContainer = binding.pageContentContainer
-        pageAdapter = PageViewAdapter(entryId, childFragmentManager, lifecycle)
+        pageAdapter = PageViewAdapter(getEntryId(), childFragmentManager, lifecycle)
         pageContainer.adapter = pageAdapter
     }
 
     // Observe the pages and update the adapter
     private fun observePages() {
         lifecycleScope.launch {
-            pagesViewModel.fetchPages(entryId!!)
+            pagesViewModel.fetchPages(getEntryId())
             pagesViewModel.uiState.observe(viewLifecycleOwner) { pageUiState ->
                 pageUiState.pages.let { pages ->
                     pageAdapter.submitPages(pages)
@@ -74,7 +75,7 @@ class PageContentFragment: Fragment() {
 
     // Set the initial page and update the title
     private fun setInitialPage(pages: List<Page>) {
-        selectedPageId?.let { pageId ->
+        getSelectedPageId().let { pageId ->
             val startPosition = pages.indexOfFirst { it.pageID == pageId }
             if (startPosition >= 0) {
                 pageContainer.setCurrentItem(startPosition, false)

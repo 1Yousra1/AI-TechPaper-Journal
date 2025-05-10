@@ -28,7 +28,7 @@ class AboutPageFragment: Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var entriesViewModel: EntriesViewModel
-    private val entryId = arguments?.getString("entryId")
+    private fun getEntryId(): String = arguments?.getString("entryId")!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         entriesViewModel = ViewModelProvider(this)[EntriesViewModel::class.java]
@@ -41,7 +41,7 @@ class AboutPageFragment: Fragment() {
     // Observe and set the content
     private fun setupContent() {
         lifecycleScope.launch {
-            entriesViewModel.fetchEntryAndPaper(entryId!!)
+            entriesViewModel.fetchEntryAndPaper(getEntryId())
             entriesViewModel.entryListState.observe(viewLifecycleOwner) { entryUiState ->
                 entryUiState.entriesWithPapers.forEach { entryWithPaper ->
                     binding.datePublished.text = entryWithPaper.paper.publishDate
