@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.techpaperjournal.databinding.FragmentLibraryPapersBinding
 import com.example.techpaperjournal.features.journal.pages.PagesViewModel
+import com.example.techpaperjournal.features.library.FilterAndSortable
 import com.example.techpaperjournal.features.library.Searchable
 import com.example.techpaperjournal.features.library.entries.EntriesViewModel
 
-class PapersFragment : BaseFragment(), Searchable {
+class PapersFragment : BaseFragment(), Searchable, FilterAndSortable {
     private var _binding: FragmentLibraryPapersBinding? = null
     private val binding get() = _binding!!
 
@@ -40,6 +41,14 @@ class PapersFragment : BaseFragment(), Searchable {
             it.title.contains(query, true) || it.author.contains(query, true)
         }
         paperAdapter.updatePapers(filteredPapers)
+    }
+
+    override fun filter(option: String) {
+        papersViewModel.setFilter(option)
+    }
+
+    override fun sort(option: String) {
+        papersViewModel.setSort(option)
     }
 
     override fun onDestroyView() {

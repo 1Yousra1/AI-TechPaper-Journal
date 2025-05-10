@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bckg_dialog"
+    android:padding="20dp"
+    android:layout_marginVertical="24dp"
+    android:layout_marginHorizontal="50dp">
+
+    <TextView
+        android:id="@+id/dialog_prompt"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Filter &amp; Sort"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/filter_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Filter By"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textSize="18sp"/>
+
+    <RadioGroup
+        android:id="@+id/filter_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/filter_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All Papers"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium"
+            android:checked="true"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/filter_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recent Access (Last 30 days)"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/filter_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By Topic"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium"/>
+
+        <EditText
+            android:id="@+id/topic_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:paddingHorizontal="5dp"
+            android:layout_weight="1"
+            android:autofillHints="Title"
+            android:inputType="text"
+            android:hint="Enter Topic"
+            android:textColor="@color/beige"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            android:visibility="gone"
+            android:background="@drawable/bckg_input"/>
+    </RadioGroup>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="2dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/sort_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Sort By"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/playfair_display_semibold"
+        android:textSize="18sp"/>
+
+    <RadioGroup
+        android:id="@+id/sort_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_accessed_updated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Accessed/Updated"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium"
+            android:checked="true"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Uploaded"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publish Date (New -> Old)"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title (A-Z)"
+            android:textColor="@color/beige"
+            android:fontFamily="@font/poppins_medium"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="@color/brown"
+            android:textSize="16sp"
+            android:fontFamily="@font/playfair_display_bold"
+            android:backgroundTint="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/brown"
+            app:cornerRadius="5dp"
+            app:shapeAppearance="@style/CustomButtonStyle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/apply_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/beige"
+            android:textSize="16sp"
+            android:fontFamily="@font/playfair_display_bold"
+            android:backgroundTint="@color/white"
+            app:rippleColor="#50ffffff"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/beige"
+            app:cornerRadius="5dp"
+            app:shapeAppearance="@style/CustomButtonStyle" />
+    </LinearLayout>
+</LinearLayout>

@@ -66,7 +66,10 @@ abstract class BaseFragment: Fragment() {
     fun setupPaperRecyclerView(isHome: Boolean) {
         paperAdapter = PaperAdapter(
             requireContext(), mutableListOf(),
-            onPaperClick = { paper -> PaperDetailsBottomSheet(paper).show(childFragmentManager, PaperDetailsBottomSheet.TAG) },
+            onPaperClick = { paper ->
+                PaperDetailsBottomSheet(paper).show(childFragmentManager, PaperDetailsBottomSheet.TAG)
+                papersViewModel.updatePaperLastAccessed(paper.paperID)
+            },
             onPaperLongClick = { paper -> showDeleteDialog("paper", paper.paperID) },
             isHome
         )
@@ -101,7 +104,6 @@ abstract class BaseFragment: Fragment() {
 
     // Observe changes in paper list and update the adapter
     fun observePaperViewModel(noPapersTv: TextView, isHome: Boolean) {
-        //var papers: List<Paper>
         papersViewModel.paperListState.observe(viewLifecycleOwner) { uiState ->
             originalPapers = uiState.papers
             val papers = if (isHome) uiState.papers.take(8) else uiState.papers
@@ -117,10 +119,9 @@ abstract class BaseFragment: Fragment() {
 
     // Observe changes in entry list and update the adapter
     fun observeEntryViewModel(noEntriesTv: TextView, isHome: Boolean) {
-        var entries: List<EntryWithPaper>
         entriesViewModel.entryListState.observe(viewLifecycleOwner) { uiState ->
             originalEntries = uiState.entriesWithPapers
-            entries = if (isHome) uiState.entriesWithPapers.take(8) else uiState.entriesWithPapers
+            val entries = if (isHome) uiState.entriesWithPapers.take(8) else uiState.entriesWithPapers
             entryAdapter.updateEntries(entries)
 
             if (entryAdapter.itemCount == 0)

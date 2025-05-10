@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.techpaperjournal.databinding.FragmentLibraryEntriesBinding
+import com.example.techpaperjournal.features.library.FilterAndSortable
 import com.example.techpaperjournal.features.library.Searchable
 import com.example.techpaperjournal.features.library.papers.BaseFragment
 
-class EntriesFragment : BaseFragment(), Searchable {
+class EntriesFragment : BaseFragment(), Searchable, FilterAndSortable {
     private var _binding: FragmentLibraryEntriesBinding? = null
     private val binding get() = _binding!!
 
@@ -22,11 +23,9 @@ class EntriesFragment : BaseFragment(), Searchable {
         _binding = FragmentLibraryEntriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Set up RecyclerView for entries
         entriesRecyclerView = binding.entriesRv
         setupEntryRecyclerView(false)
 
-        // Observe entries view model
         observeEntryViewModel(binding.noEntriesTv, false)
 
         return root
@@ -37,6 +36,14 @@ class EntriesFragment : BaseFragment(), Searchable {
             it.paper.title.contains(query, true) || it.paper.author.contains(query, true)
         }
         entryAdapter.updateEntries(filteredEntries)
+    }
+
+    override fun filter(option: String) {
+        entriesViewModel.setFilter(option)
+    }
+
+    override fun sort(option: String) {
+        entriesViewModel.setSort(option)
     }
 
     override fun onDestroyView() {

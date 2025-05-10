@@ -25,7 +25,7 @@ class PaperRepository {
 
     // Fetch all papers
     fun getPapers(): Flow<List<Paper>> = callbackFlow {
-        val listener = papersCollection.orderBy("uploadDate", Query.Direction.DESCENDING).addSnapshotListener { snapshot, error ->
+        val listener = papersCollection.orderBy("lastAccessed", Query.Direction.DESCENDING).addSnapshotListener { snapshot, error ->
             if (error != null) {
                 trySend(emptyList())
                 return@addSnapshotListener
@@ -66,6 +66,7 @@ class PaperRepository {
                 title = details["Title"] ?: "Untitled",
                 author = details["Author"] ?: "Unknown",
                 publishDate = details["Publish Date"] ?: "Unknown",
+                lastAccessed = Timestamp.now(),
                 uploadDate = Timestamp.now(),
                 topic = if (details["Topic"]?.isBlank() == true)  null else details["Topic"]?.split(","),
                 numOfPages = details["Pages"].toString().toInt(),
@@ -89,6 +90,15 @@ class PaperRepository {
     // Update an existing paper
     suspend fun updatePaper(paperId: String, paperDetails: Map<String, Any?>) {
         papersCollection.document(paperId).update(paperDetails).await()
+    }
+
+    // Update a papers last accessed date
+    suspend fun updatePaperLastAccessed(paperId: String) {
+        try {
+            papersCollection.document(paperId).update("lastAccessed", Timestamp.now()).await()
+        } catch (e: Exception) {
+            Log.e("EntryRepository", "Error updating paper: ${e.message}", e)
+        }
     }
 
     // Delete a paper

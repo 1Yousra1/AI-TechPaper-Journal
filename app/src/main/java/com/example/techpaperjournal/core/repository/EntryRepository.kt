@@ -65,7 +65,7 @@ class EntryRepository {
         try {
             entriesCollection.document(entryId).update("lastUpdated", Timestamp.now()).await()
         } catch (e: Exception) {
-            Log.e("EntryRepository", "Error adding entry: ${e.message}", e)
+            Log.e("EntryRepository", "Error updating entry: ${e.message}", e)
         }
     }
 
@@ -74,7 +74,7 @@ class EntryRepository {
         try {
             entriesCollection.document(entryId).delete().await()
         } catch (e: Exception) {
-            Log.e("EntryRepository", "Error adding entry: ${e.message}", e)
+            Log.e("EntryRepository", "Error deleting entry: ${e.message}", e)
         }
     }
 
@@ -85,7 +85,7 @@ class EntryRepository {
             querySnapshot.documents.forEach { it.reference.delete().await() }
             return querySnapshot.documents.firstOrNull()?.id
         } catch (e: Exception) {
-            Log.e("EntryRepository", "Error adding entry: ${e.message}", e)
+            Log.e("EntryRepository", "Error deleting entry: ${e.message}", e)
             null
         }
     }
