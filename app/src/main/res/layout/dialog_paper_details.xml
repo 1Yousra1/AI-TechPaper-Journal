@@ -103,7 +103,7 @@
         android:layout_marginBottom="8dp"
         android:autofillHints="Title"
         android:inputType="date"
-        android:hint="MM/YYYY"
+        android:hint="Month Year"
         android:textColor="@color/brown"
         android:textSize="16sp"
         android:fontFamily="@font/playfair_display_semibold"
@@ -127,7 +127,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         app:flexWrap="wrap"
@@ -155,10 +154,24 @@
             app:strokeWidth="1dp" />
     </com.google.android.flexbox.FlexboxLayout>
 
+    <TextView
+        android:id="@+id/topics_error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Please add at least one topic tag."
+        android:textColor="@color/red_500"
+        android:fontFamily="@font/poppins"
+        android:textStyle="bold"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/upload_paper_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         android:layout_gravity="center"

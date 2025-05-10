@@ -41,6 +41,7 @@ import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.text.PDFTextStripper
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 import java.util.UUID
 
@@ -238,10 +239,11 @@ abstract class BaseFragment: Fragment() {
             }
 
             addPaperView.findViewById<MaterialButton>(R.id.upload_paper_button).setOnClickListener {
-                getUpdatedMetadata(addPaperView)
-                showUploadDialog()
-                papersViewModel.uploadPaper(uri, paperDetailsMap)
-                dialog.dismiss()
+                if(getUpdatedPaperDetails(addPaperView)) {
+                    showUploadingDialog()
+                    papersViewModel.uploadPaper(uri, paperDetailsMap)
+                    dialog.dismiss()
+                }
             }
         }
     }
@@ -256,7 +258,10 @@ abstract class BaseFragment: Fragment() {
         titleEditText.setText(paperDetailsMap["Title"] ?: "Untitled")
         authorEditText.setText(paperDetailsMap["Author"] ?: "Unknown")
         datePublishedEditText.setText(paperDetailsMap["Publish Date"] ?: "Unknown")
-        paperDetailsMap["Topic"]?.split(",")?.forEach { topic ->
+        paperDetailsMap["Topic"]?.split(",")
+            ?.map { it.trim() }
+            ?.filter { it.isNotEmpty() && it.isNotBlank() }
+            ?.forEach { topic ->
             val tagView = TextView(context).apply {
                 text = topic
                 setPadding(20, 10, 20, 10)
@@ -287,20 +292,66 @@ abstract class BaseFragment: Fragment() {
         }
     }
 
-    // Get the updated metadata from the dialog
-    private fun getUpdatedMetadata(view: View) {
+    // Get the updated paper details from the dialog
+    private fun getUpdatedPaperDetails(view: View): Boolean {
         val titleEditText = view.findViewById<EditText>(R.id.title_input)
         val authorEditText = view.findViewById<EditText>(R.id.author_input)
         val datePublishedEditText = view.findViewById<EditText>(R.id.date_published_input)
-        if (titleEditText.text.toString().isBlank())
+        val container = view.findViewById<FlexboxLayout>(R.id.topics_input_container)
+
+        var isValid = true
+        if (titleEditText.text.toString().isBlank()) {
             titleEditText.error = "Title is required"
-        if (authorEditText.text.toString().isBlank())
+            isValid = false
+        }
+
+        if (authorEditText.text.toString().isBlank()) {
             authorEditText.error = "Author is required"
-        if (datePublishedEditText.text.toString().isBlank())
-            datePublishedEditText.error = "Date published is required"
-        paperDetailsMap["Title"] = titleEditText.text.toString()
-        paperDetailsMap["Author"] = authorEditText.text.toString()
-        paperDetailsMap["Publish Date"] = datePublishedEditText.text.toString()
+            isValid = false
+        }
+
+        val dateText = datePublishedEditText.text.toString()
+        if (dateText.isNotBlank()) {
+            if (!isValidPublicationDate(dateText)) {
+                datePublishedEditText.error = "Please use format: Month Year (e.g. January 2023)"
+                isValid = false
+            }
+        }
+
+        val hasTags = container.childCount > 1
+        if (!hasTags) {
+            Toast.makeText(context, "Please add at least one topic tag", Toast.LENGTH_SHORT).show()
+            view.findViewById<TextView>(R.id.topics_error_message).visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (isValid) {
+            paperDetailsMap["Title"] = titleEditText.text.toString()
+            paperDetailsMap["Author"] = authorEditText.text.toString()
+            paperDetailsMap["Publish Date"] = datePublishedEditText.text.toString()
+        }
+        return isValid
+    }
+
+    // Checks if the publication date is valid
+    private fun isValidPublicationDate(dateString: String): Boolean {
+        if (dateString.isBlank()) return true
+
+        val parts = dateString.split(" ")
+        if (parts.size != 2) return false
+
+        val month = parts[0]
+        val year = parts[1]
+
+        val validMonths = listOf(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        )
+        if (month !in validMonths) return false
+
+        if (!year.matches(Regex("^\\d{4}$"))) return false
+        val yearInt = year.toInt()
+        return !(yearInt < 1900 || yearInt > Calendar.getInstance().get(Calendar.YEAR))
     }
 
     // Displays a dialog for adding new tags
@@ -316,6 +367,9 @@ abstract class BaseFragment: Fragment() {
                 if (topic.isNotEmpty()) {
                     paperDetailsMap["Topic"] = (paperDetailsMap["Topic"] ?: "") + ", $topic"
                     addTagToContainer(container, topic)
+                    view.findViewById<TextView>(R.id.topics_error_message).visibility = View.GONE
+                } else {
+                    inputField.error = "Tag cannot be empty"
                 }
                 dialog.dismiss()
             }
@@ -375,6 +429,8 @@ abstract class BaseFragment: Fragment() {
                     paperDetailsMap["Topic"] =
                         (paperDetailsMap["Topic"] ?: topic).replace(topic, editedTopic)
                     onTopicUpdated(editedTopic)
+                } else {
+                    inputField.error = "Tag cannot be empty"
                 }
                 dialog.dismiss()
             }
@@ -418,7 +474,7 @@ abstract class BaseFragment: Fragment() {
     }
 
     // Displays a loading dialog while uploading a paper
-    private fun showUploadDialog() {
+    private fun showUploadingDialog() {
         val dialog = createCustomDialog(R.layout.dialog_progress_bar) { loadingDialog, dialog ->
             val icon = loadingDialog.findViewById<ImageView>(R.id.pdf_icon)
             val progressBar = loadingDialog.findViewById<ProgressBar>(R.id.progress_bar)

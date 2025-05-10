@@ -32,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.util.Calendar
 
 open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialogFragment() {
     private lateinit var binding : DialogBottomSheetBinding
@@ -88,8 +89,9 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
         if (topics != null) {
             val topics = if (isEdited) paperDetailsMap["topic"] as List<*> else paper.topic
             val topicList = if (topics?.size!! > 4) topics.subList(0, 4) + listOf("+${topics.size - 4}") else topics
+            Log.d("PaperDetailsBottomSheet", "Topics: $topicList")
             binding.paperTopicsContainer.removeAllViews()
-            setTags(topicList as MutableList<String>?, binding.paperTopicsContainer)
+            setTags(topicList as MutableList<String>?, binding.paperTopicsContainer, true)
         }
     }
 
@@ -137,18 +139,88 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
 
         editPaperView.findViewById<MaterialButton>(R.id.add_tag_button).setOnClickListener { addNewTags(editPaperView) }
         editPaperView.findViewById<MaterialButton>(R.id.upload_paper_button).setOnClickListener {
-            paperDetailsMap = mutableMapOf<String, Any?>().apply {
+
+            /*paperDetailsMap = mutableMapOf<String, Any?>().apply {
                 this["title"] = editPaperView.findViewById<EditText>(R.id.title_input).text.toString()
                 this["author"] = editPaperView.findViewById<EditText>(R.id.author_input).text.toString()
                 this["publishDate"] = editPaperView.findViewById<EditText>(R.id.date_published_input).text.toString()
                 this["topic"] = topics
+            }*/
+            if (getUpdatedPaperDetails(editPaperView)) {
+                papersViewModel.updatePaper(paper.paperID, paperDetailsMap)
+                isEdited = true
+                populateBottomSheet()
+                paperDialog.dismiss()
             }
-            papersViewModel.updatePaper(paper.paperID, paperDetailsMap)
-            isEdited = true
-            populateBottomSheet()
-            paperDialog.dismiss()
         }
         paperDialog.show()
+    }
+
+    // Get the updated paper details from the dialog
+    private fun getUpdatedPaperDetails(view: View): Boolean {
+        val titleEditText = view.findViewById<EditText>(R.id.title_input)
+        val authorEditText = view.findViewById<EditText>(R.id.author_input)
+        val datePublishedEditText = view.findViewById<EditText>(R.id.date_published_input)
+        val container = view.findViewById<FlexboxLayout>(R.id.topics_input_container)
+
+        var isValid = true
+        if (titleEditText.text.toString().isBlank()) {
+            titleEditText.error = "Title is required"
+            isValid = false
+        }
+
+        if (authorEditText.text.toString().isBlank()) {
+            authorEditText.error = "Author is required"
+            isValid = false
+        }
+
+        val dateText = datePublishedEditText.text.toString()
+        if (dateText.isNotBlank()) {
+            if (!isValidPublicationDate(dateText)) {
+                datePublishedEditText.error = "Please use format: Month Year (e.g. January 2023)"
+                isValid = false
+            }
+        }
+
+        val hasTags = container.childCount > 1
+        if (!hasTags) {
+            Toast.makeText(context, "Please add at least one topic tag", Toast.LENGTH_SHORT).show()
+            view.findViewById<TextView>(R.id.topics_error_message).visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (isValid) {
+            paperDetailsMap["title"] = titleEditText.text.toString()
+            paperDetailsMap["author"] = authorEditText.text.toString()
+            paperDetailsMap["publishDate"] = datePublishedEditText.text.toString()
+            val updatedTopics = mutableListOf<String>()
+            for (i in 0 until container.childCount - 1) {
+                (container.getChildAt(i) as? TextView)?.text?.toString()?.let { updatedTopics.add(it) }
+            }
+            paperDetailsMap["topic"] = updatedTopics
+        }
+        return isValid
+    }
+
+    // Checks if the publication date is valid
+    private fun isValidPublicationDate(dateString: String): Boolean {
+        if (dateString.isBlank()) return true
+
+        val parts = dateString.split(" ")
+        if (parts.size != 2) return false
+
+        val month = parts[0]
+        val year = parts[1]
+
+        val validMonths = listOf(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        )
+        if (month !in validMonths) return false
+
+        if (!year.matches(Regex("^\\d{4}$"))) return false
+        val yearInt = year.toInt()
+        return !(yearInt < 1900 || yearInt > Calendar.getInstance().get(Calendar.YEAR))
     }
 
     // Populate the edit paper dialog with the metadata
@@ -156,14 +228,18 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
         view.findViewById<EditText>(R.id.title_input).setText(paper.title)
         view.findViewById<EditText>(R.id.author_input).setText(paper.author)
         view.findViewById<EditText>(R.id.date_published_input).setText(paper.publishDate)
-        setTags(topics, view.findViewById(R.id.topics_input_container))
+        setTags(topics, view.findViewById(R.id.topics_input_container), false)
     }
 
     /** --------------- Tag Methods --------------- **/
 
     // Set the tags in the container
-    private fun setTags(topics : MutableList<String>?, container: FlexboxLayout) {
-        topics?.forEach { topic -> addTagToContainer(container, topic) }
+    private fun setTags(topics : MutableList<String>?, container: FlexboxLayout, isBottomSheet: Boolean) {
+        Log.d("PaperDetailsBottomSheet", "Setting tags: $topics")
+        topics?.forEach { topic ->
+            Log.d("PaperDetailsBottomSheet", "Adding tag: $topic")
+            addTagToContainer(container, topic, isBottomSheet)
+        }
     }
 
     // Displays a dialog to add a new tag
@@ -183,7 +259,10 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
             val topic = inputField.text.toString().trim()
             if (topic.isNotEmpty()) {
                 topics?.plusAssign(topic)
-                addTagToContainer(container, topic)
+                addTagToContainer(container, topic, false)
+                view.findViewById<TextView>(R.id.topics_error_message).visibility = View.GONE
+            } else {
+                inputField.error = "Tag cannot be empty"
             }
             dialog.dismiss()
         }
@@ -195,7 +274,7 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
     }
 
     // Add a tag to the container
-    private fun addTagToContainer(container: FlexboxLayout, topic: String) {
+    private fun addTagToContainer(container: FlexboxLayout, topic: String, isBottomSheet: Boolean) {
         val tagView = TextView(context).apply {
             text = topic
             setPadding(20, 10, 20, 10)
@@ -223,7 +302,10 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
         }
         tagView.layoutParams = layoutParams
 
-        container.addView(tagView, container.childCount - 1)
+        if (isBottomSheet)
+            container.addView(tagView, container.childCount)
+        else
+            container.addView(tagView, container.childCount - 1)
     }
 
     // Displays a dialog to edit a tag
@@ -249,6 +331,8 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
                     topics?.set(index, editedTopic)
                 }
                 onTopicUpdated(editedTopic)
+            } else {
+                inputField.error = "Tag cannot be empty"
             }
             dialog.dismiss()
         }
