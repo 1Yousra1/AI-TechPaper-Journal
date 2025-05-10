@@ -12,7 +12,7 @@
         android:id="@+id/dialog_prompt"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Insert Link"
+        android:text="@string/link_dialog_title"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="Title"
+        android:text="@string/title_label"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -45,7 +45,7 @@
         android:layout_weight="1"
         android:autofillHints="Title"
         android:inputType="text"
-        android:hint="Enter Title"
+        android:hint="@string/title_input_hint"
         android:textColor="@color/brown"
         android:textSize="16sp"
         android:fontFamily="@font/playfair_display_semibold"
@@ -55,7 +55,7 @@
         android:id="@+id/link_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Link"
+        android:text="@string/link_label"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -74,10 +74,10 @@
         android:layout_weight="1"
         android:autofillHints="Title"
         android:inputType="text"
-        android:hint="Enter Title"
-        android:textColor="@color/beige"
+        android:hint="@string/link_input_hint"
+        android:textColor="@color/brown"
         android:textSize="16sp"
-        android:fontFamily="@font/poppins_medium"
+        android:fontFamily="@font/playfair_display_semibold"
         android:background="@drawable/bckg_input"/>
 
     <com.google.android.material.button.MaterialButton
@@ -87,7 +87,7 @@
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         android:layout_gravity="center"
-        android:text="Create Link"
+        android:text="@string/create_link_button"
         android:textSize="16sp"
         android:fontFamily="@font/playfair_display_bold"
         android:textColor="@color/brown"
@@ -97,5 +97,4 @@
         app:strokeWidth="1dp"
         app:strokeColor="@color/brown"
         app:cornerRadius="5dp" />
-
 </LinearLayout>

@@ -13,7 +13,7 @@
         android:id="@+id/dialog_prompt"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Add Entry"
+        android:text="@string/add_entry_title"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -26,7 +26,7 @@
         android:id="@+id/dropdown_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Paper"
+        android:text="@string/choose_paper_label"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -53,7 +53,7 @@
             android:focusable="false"
             android:textSize="13sp"
             android:textColor="@color/beige"
-            android:hint="Select Paper Title"
+            android:hint="@string/paper_chooser_hint"
             android:labelFor="@id/dropdown_prompt"
             android:fontFamily="@font/poppins_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,5 +76,4 @@
         app:strokeWidth="1dp"
         app:strokeColor="@color/brown"
         app:cornerRadius="5dp" />
-
 </LinearLayout>

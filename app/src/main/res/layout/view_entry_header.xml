@@ -24,6 +24,7 @@
             android:scaleType="fitCenter"
             android:background="#00000000"
             android:src="@drawable/ic_gridview"
+            android:contentDescription="Open GridView"
             android:visibility="invisible"/>
 
         <TextView
@@ -33,7 +34,7 @@
             android:layout_marginTop="17dp"
             android:layout_weight="1"
             android:fontFamily="@font/poppins_semibold"
-            android:text="About"
+            android:text="@string/page_title"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/beige"
@@ -45,7 +46,8 @@
             android:layout_marginTop="10dp"
             android:layout_weight=".2"
             android:padding="2dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:contentDescription="@null" />
     </LinearLayout>
 
     <TextView
@@ -54,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:fontFamily="@font/playfair_display_bold"
-        android:text="Paper Title"
+        android:text="@string/paper_title"
         android:textAlignment="center"
         android:textColor="@color/brown"
         android:textSize="16sp" />
@@ -66,7 +68,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginHorizontal="30dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="First Last, First Last"
+        android:text="@string/paper_authors"
         android:textAlignment="center"
         android:textColor="@color/beige"
         android:textSize="14sp"
@@ -92,7 +94,7 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="3dp"
             android:gravity="center"
-            android:text="Topic1"
+            android:text="@string/topic_1"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/beige"
@@ -104,7 +106,7 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="3dp"
             android:gravity="center"
-            android:text="Topic2"
+            android:text="@string/topic_2"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/beige"
@@ -116,7 +118,7 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="3dp"
             android:gravity="center"
-            android:text="Topic3"
+            android:text="@string/topic_3"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/beige"
@@ -127,7 +129,7 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="3dp"
             android:gravity="center"
-            android:text="+4"
+            android:text="@string/additional_tags"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/beige"

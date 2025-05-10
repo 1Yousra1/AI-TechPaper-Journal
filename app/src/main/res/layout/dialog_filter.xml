@@ -10,11 +10,11 @@
     android:layout_marginHorizontal="50dp">
 
     <TextView
-        android:id="@+id/dialog_prompt"
+        android:id="@+id/dialog_title"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Filter &amp; Sort"
+        android:text="@string/filter_dialog_title"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Filter By"
+        android:text="@string/filter_label"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textSize="18sp"/>
@@ -43,7 +43,7 @@
             android:id="@+id/filter_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All Papers"
+            android:text="@string/filter_all"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"
             android:checked="true"/>
@@ -52,7 +52,7 @@
             android:id="@+id/filter_recent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recent Access (Last 30 days)"
+            android:text="@string/filter_recent"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -60,7 +60,7 @@
             android:id="@+id/filter_topic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="By Topic"
+            android:text="@string/filter_topic"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -78,7 +78,7 @@
             android:layout_weight="1"
             android:autofillHints="Title"
             android:inputType="text"
-            android:hint="Enter Topic"
+            android:hint="@string/filter_topic_hint"
             android:textColor="@color/beige"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
-        android:text="Sort By"
+        android:text="@string/sort_label"
         android:textColor="@color/brown"
         android:fontFamily="@font/playfair_display_semibold"
         android:textSize="18sp"/>
@@ -113,7 +113,7 @@
             android:id="@+id/sort_accessed_updated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Accessed/Updated"
+            android:text="@string/sort_accessed_updated"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"
             android:checked="true"/>
@@ -122,7 +122,7 @@
             android:id="@+id/sort_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Uploaded"
+            android:text="@string/sort_upload"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium" />
 
@@ -130,7 +130,7 @@
             android:id="@+id/sort_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Publish Date (New -> Old)"
+            android:text="@string/sort_date"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium" />
 
@@ -138,7 +138,7 @@
             android:id="@+id/sort_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title (A-Z)"
+            android:text="@string/sort_title"
             android:textColor="@color/beige"
             android:fontFamily="@font/poppins_medium"/>
     </RadioGroup>
@@ -154,7 +154,7 @@
             android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/button_cancel"
             android:textColor="@color/brown"
             android:textSize="16sp"
             android:fontFamily="@font/playfair_display_bold"
@@ -168,7 +168,7 @@
             android:id="@+id/apply_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply"
+            android:text="@string/button_apply"
             android:layout_marginStart="20dp"
             android:textColor="@color/beige"
             android:textSize="16sp"

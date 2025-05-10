@@ -1,16 +1,141 @@
 <resources>
-    <string name="app_name">Tech Paper Journal</string>
-    <string name="title_home">HOME</string>
-    <string name="title_library">LIBRARY</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="greeting_home">Hello, Reader!</string>
-    <string name="papers_label">Papers</string>
-    <string name="entries_label">Entries</string>
-    <string name="add_button_description">Add paper or entry</string>
-    <string name="add_dialog_prompt">What would you like to add?</string>
-    <string name="add_entry">Add Entry</string>
-    <string name="upload_paper">Upload Paper</string>
-    <string name="pdf_icon">PDF Icon</string>
-    <string name="paper_title">Title of Paper</string>
-    <string name="delete_dialog_prompt">Are you sure you want to delete this paper?</string>
+    <string name="app_name" translatable="false">Tech Paper Journal</string>
+
+    <!-- Navigation -->
+    <string name="home_nav" translatable="false">HOME</string>
+    <string name="library_nav" translatable="false">LIBRARY</string>
+
+    <!-- Home Screen -->
+    <string name="greeting_home" translatable="false">Hello, Reader!</string>
+    <string name="papers_label" translatable="false">Papers</string>
+    <string name="entries_label" translatable="false">Entries</string>
+    <string name="no_papers_message" translatable="false">No papers in list.</string>
+    <string name="no_entries_message" translatable="false">No entries in list.</string>
+    <string name="add_button_description" translatable="false">Add paper or entry</string>
+
+    <!-- Library Screen -->>
+    <string name="search_button_content_description" translatable="false">Search</string>
+    <string name="filter_button_content_description" translatable="false">Filter options</string>
+
+    <!-- Paper Item -->
+    <string name="pdf_icon" translatable="false">PDF Icon</string>
+    <string name="paper_title" translatable="false">Title of Paper</string>
+    <string name="additional_tags" translatable="false">+4</string>
+    <string name="paper_authors" translatable="false">First Last, First Last</string>
+
+    <!-- Entry Item -->
+    <string name="entry_title" translatable="false">Entry Title</string>
+    <string name="last_updated" translatable="false">Last Updated Jan 2</string>
+    <string name="paper_summary_placeholder" translatable="false">This is the preview summary of this paper. Lorem ipsum odor amet, consectetuer adipiscing elit. Congue blandit eget donec lacinia accumsan. Tempus at aptent tempor non massa ipsum sociosqu. Tempus at aptent tempor non massa ipsum sociosqu.</string>
+    <string name="topic_1" translatable="false">Topic 1</string>
+    <string name="topic_2" translatable="false">Topic 2</string>
+    <string name="topic_3" translatable="false">Topic 3</string>
+
+    <!-- Page Item -->
+    <string name="add_page_button" translatable="false">Add Page</string>
+    <string name="delete_page_button" translatable="false">Delete Page</string>
+    <string name="open_page_button" translatable="false">Open Page</string>
+    <string name="page_title" translatable="false">About</string>
+
+    <!-- Add Dialog -->
+    <string name="add_dialog_prompt" translatable="false">What would you like to add?</string>
+    <string name="add_entry" translatable="false">Add Entry</string>
+    <string name="upload_paper" translatable="false">Upload Paper</string>
+
+    <!-- Add Entry Dialog -->
+    <string name="add_entry_title" translatable="false">Add Entry</string>
+    <string name="choose_paper_label" translatable="false">Choose Paper</string>
+    <string name="paper_chooser_hint" translatable="false">Select Paper Title</string>
+
+    <!-- Paper Bottom Sheet -->
+    <string name="edit_button" translatable="false">Edit Paper Details</string>
+    <string name="read_paper_button" translatable="false">Read Paper</string>
+    <string name="publish_date" translatable="false">January 2025</string>
+
+    <!-- Delete Dialog -->
+    <string name="delete_dialog_prompt" translatable="false">Are you sure you want to delete this paper?</string>
+    <string name="delete_dialog_title" translatable="false">Delete Paper</string>
+    <string name="negative_button" translatable="false">No</string>
+    <string name="positive_button" translatable="false">Yes</string>
+
+    <!-- Filter Dialog -->
+    <string name="filter_dialog_title" translatable="false">Filter &amp; Sort</string>
+    <string name="filter_label" translatable="false">Filter By</string>
+    <string name="sort_label" translatable="false">Sort By</string>
+    <string name="filter_all" translatable="false">All Papers</string>
+    <string name="filter_recent" translatable="false">Recent Access (Last 30 days)</string>
+    <string name="filter_topic" translatable="false">By Topic</string>
+    <string name="filter_topic_hint" translatable="false">Enter Topic</string>
+    <string name="sort_accessed_updated" translatable="false">Last Accessed/Updated</string>
+    <string name="sort_upload" translatable="false">Last Uploaded</string>
+    <string name="sort_date" translatable="false">Publish Date (New -> Old)</string>
+    <string name="sort_title" translatable="false">Title (A-Z)</string>
+    <string name="button_cancel" translatable="false">Cancel</string>
+    <string name="button_apply" translatable="false">Apply</string>
+
+    <!-- Insert Link Dialog -->
+    <string name="link_dialog_title" translatable="false">Insert Link</string>
+    <string name="title_label" translatable="false">Title</string>
+    <string name="title_input_hint" translatable="false">Enter Title</string>
+    <string name="link_label" translatable="false">Link</string>
+    <string name="link_input_hint" translatable="false">Enter Link</string>
+    <string name="create_link_button" translatable="false">Create Link</string>
+
+    <!-- Install PDF Reader Dialog -->
+    <string name="pdf_reader_dialog_title" translatable="false">PDF Reader Required</string>
+    <string name="pdf_reader_dialog_message" translatable="false">No PDF reader detected. Install one from Play Store?</string>
+
+    <!-- Paper Details Dialog -->
+    <string name="details_dialog_title" translatable="false">Upload Paper</string>
+    <string name="author_label" translatable="false">Author(s)</string>
+    <string name="author_input_hint" translatable="false">Enter Author(s)</string>
+    <string name="date_published_label" translatable="false">Date Published</string>
+    <string name="date_published_hint" translatable="false">Month Year</string>
+    <string name="topic_label" translatable="false">Topic(s)</string>
+    <string name="topic_error_message" translatable="false">Please add at least one topic tag.</string>
+
+    <!-- Progress Bar Dialog -->
+    <string name="uploading_paper_title" translatable="false">Uploading Paper</string>
+    <string name="uploading_paper_message" translatable="false">Uploading...</string>
+
+    <!-- Add Tag Dialog -->
+    <string name="add_tag_title" translatable="false">Add Tag</string>
+    <string name="tag_input_hint" translatable="false">Enter tag</string>
+    <string name="add_button" translatable="false">Add</string>
+
+    <!-- Add Page Dialog -->
+    <string name="add_page_title" translatable="false">Add Page</string>
+
+    <!-- Rich Text Editor Buttons -->
+    <string name="editor_back" translatable="false">Back</string>
+    <string name="editor_undo" translatable="false">Undo</string>
+    <string name="editor_redo" translatable="false">Redo</string>
+    <string name="editor_edit" translatable="false">Edit mode</string>
+    <string name="editor_erase" translatable="false">Clear formatting</string>
+    <string name="editor_bold" translatable="false">Bold</string>
+    <string name="editor_italic" translatable="false">Italic</string>
+    <string name="editor_subscript" translatable="false">Subscript</string>
+    <string name="editor_superscript" translatable="false">Superscript</string>
+    <string name="editor_strikethrough" translatable="false">Strikethrough</string>
+    <string name="editor_underline" translatable="false">Underline</string>
+    <string name="editor_text_color" translatable="false">Text color</string>
+    <string name="editor_bg_color" translatable="false">Background color</string>
+    <string name="editor_heading1" translatable="false">Heading 1</string>
+    <string name="editor_heading2" translatable="false">Heading 2</string>
+    <string name="editor_heading3" translatable="false">Heading 3</string>
+    <string name="editor_heading4" translatable="false">Heading 4</string>
+    <string name="editor_heading5" translatable="false">Heading 5</string>
+    <string name="editor_heading6" translatable="false">Heading 6</string>
+    <string name="editor_indent" translatable="false">Increase indent</string>
+    <string name="editor_outdent" translatable="false">Decrease indent</string>
+    <string name="editor_align_left" translatable="false">Align left</string>
+    <string name="editor_align_center" translatable="false">Align center</string>
+    <string name="editor_align_right" translatable="false">Align right</string>
+    <string name="editor_bullets" translatable="false">Bullet list</string>
+    <string name="editor_numbers" translatable="false">Numbered list</string>
+    <string name="editor_blockquote" translatable="false">Block quote</string>
+    <string name="editor_link" translatable="false">Insert link</string>
+    <string name="editor_checkbox" translatable="false">Insert checkbox</string>
+
+
 </resources>

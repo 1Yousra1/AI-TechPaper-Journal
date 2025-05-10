@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/notes_content"
         android:layout_width="match_parent"
@@ -36,7 +35,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_back"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_back" />
 
@@ -46,7 +45,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_undo"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_undo" />
 
@@ -56,7 +55,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_redo"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_redo" />
 
@@ -66,7 +65,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_edit"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_edit" />
 
@@ -76,7 +75,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_erase"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_erase" />
 
@@ -86,7 +85,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_bold"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_bold" />
 
@@ -96,7 +95,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_italic"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_italic" />
 
@@ -106,7 +105,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_subscript"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_subscript" />
 
@@ -116,7 +115,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_superscript"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_superscript" />
 
@@ -126,7 +125,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_strikethrough"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_strikethrough" />
 
@@ -136,7 +135,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_underline"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_underline" />
 
@@ -146,7 +145,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_text_color"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_text_color" />
 
@@ -156,7 +155,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_bg_color"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_highlighter" />
 
@@ -166,7 +165,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading1"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading" />
 
@@ -176,7 +175,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading2"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading2" />
 
@@ -186,7 +185,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading3"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading3" />
 
@@ -196,7 +195,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading4"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading4" />
 
@@ -206,7 +205,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading5"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading5" />
 
@@ -216,7 +215,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_heading6"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_heading6" />
 
@@ -226,7 +225,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_indent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_indent" />
 
@@ -236,7 +235,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_outdent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_outdent" />
 
@@ -246,7 +245,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_align_left"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_left_alignment" />
 
@@ -256,7 +255,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_align_center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_center_alignment" />
 
@@ -266,7 +265,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_align_right"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_right_alignment" />
 
@@ -276,7 +275,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_bullets"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_bullets" />
 
@@ -286,7 +285,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_numbers"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_numbers" />
 
@@ -296,7 +295,7 @@
                 android:layout_height="52dp"
                 android:padding="15dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_blockquote"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_blockquote" />
 
@@ -306,7 +305,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_link"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_link" />
 
@@ -316,7 +315,7 @@
                 android:layout_height="52dp"
                 android:padding="13dp"
                 android:background="@drawable/bckg_editor"
-                android:contentDescription="@null"
+                android:contentDescription="@string/editor_checkbox"
                 android:scaleType="fitCenter"
                 android:src="@drawable/editor_checkbox" />
         </LinearLayout>

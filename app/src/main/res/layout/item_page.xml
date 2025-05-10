@@ -25,20 +25,20 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_semibold"
             android:lines="1"
-            android:text="About"
+            android:text="@string/page_title"
             android:textAlignment="textStart"
             android:textAllCaps="true"
             android:textColor="@color/beige"
             android:textSize="13sp" />
 
         <ImageView
-            android:id="@+id/page_preview"
+            android:id="@+id/page_icon"
             android:layout_width="150dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
             android:padding="50dp"
             android:background="@drawable/bckg_input"
-            android:contentDescription="page preview"
+            android:contentDescription="@string/open_page_button"
             android:elevation="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_page"/>
@@ -51,7 +51,7 @@
         android:layout_marginTop="25dp"
         android:padding="13dp"
         android:background="#00000000"
-        android:contentDescription="@null"
+        android:contentDescription="@string/delete_page_button"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_delete_fill"
         app:tint="@color/beige"

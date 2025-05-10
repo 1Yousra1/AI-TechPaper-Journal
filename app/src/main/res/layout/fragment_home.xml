@@ -65,7 +65,7 @@
         android:id="@+id/no_papers_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No papers in list."
+        android:text="@string/no_papers_message"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,11 +110,10 @@
         android:id="@+id/no_entries_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No entries in list."
+        android:text="@string/no_entries_message"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/entries_rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/entries_rv" />
-    
 </androidx.constraintlayout.widget.ConstraintLayout>
