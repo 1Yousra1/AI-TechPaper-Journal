@@ -107,21 +107,29 @@ class NotesPageFragment: Fragment() {
         binding.actionHeading6.setOnClickListener{ mEditor.setHeading(6) }
 
         binding.actionTxtColor.setOnClickListener {
-            //mEditor.setTextColor(if(isColorChanged) Color.BLACK else Color.BLUE)
             showColorPicker { selectedColor ->
                 mEditor.setTextColor(selectedColor)
                 binding.actionTxtColor.setColorFilter(selectedColor)
             }
-            //isColorChanged = !isColorChanged
+        }
+
+        binding.actionTxtColor.setOnLongClickListener {
+            mEditor.setTextColor(Color.BLACK)
+            binding.actionTxtColor.setColorFilter(Color.WHITE)
+            true
         }
 
         binding.actionBgColor.setOnClickListener {
-            //mEditor.setTextBackgroundColor(if(isHighlightChanged) Color.WHITE else Color.YELLOW)
             showColorPicker { selectedColor ->
                 mEditor.setTextBackgroundColor(selectedColor)
                 binding.actionBgColor.setColorFilter(selectedColor)
             }
-            //isHighlightChanged = !isHighlightChanged
+        }
+
+        binding.actionBgColor.setOnLongClickListener {
+            mEditor.setTextBackgroundColor(Color.WHITE)
+            binding.actionBgColor.setColorFilter(Color.WHITE)
+            true
         }
 
         binding.actionIndent.setOnClickListener { mEditor.setIndent() }
@@ -129,7 +137,7 @@ class NotesPageFragment: Fragment() {
         binding.actionAlignLeft.setOnClickListener { mEditor.setAlignLeft() }
         binding.actionAlignCenter.setOnClickListener{ mEditor.setAlignCenter() }
         binding.actionAlignRight.setOnClickListener { mEditor.setAlignRight() }
-        binding.actionBlockquote.setOnClickListener { mEditor.setBlockquote(); }
+        binding.actionBlockquote.setOnClickListener { mEditor.setBlockquote();}
         binding.actionInsertBullets.setOnClickListener { mEditor.setBullets() }
         binding.actionInsertNumbers.setOnClickListener { mEditor.setNumbers() }
 

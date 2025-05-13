@@ -115,14 +115,19 @@ class PaperRepository {
     private suspend fun generateSummary(content: String): String? {
         val safeContent = content.take(5000)
         val messages = listOf(
-            Message(role = "user", content = "Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining clarity and conciseness of this paper: $safeContent")
+            Message(
+                role = "user",
+                content = "Generate a comprehensive, clear, and concise summary of the following paper. " +
+                        "Ensure that the summary captures the key concepts, arguments, findings, and conclusions " +
+                        "in a detailed and thorough manner without sacrificing readability or coherence. " +
+                        "Only include the summary and omit empty lines. It must be 250 words.: $safeContent")
         )
 
         val request = OpenAIRequest(
             model = "gpt-4o-mini",
             messages = messages,
             temperature = 0.7,
-            maxTokens = 300
+            maxTokens = 350
         )
 
         return try {

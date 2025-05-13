@@ -99,9 +99,9 @@ open class PaperDetailsBottomSheet(private val paper: Paper) : BottomSheetDialog
     private fun setupSummaryExpandable() {
         binding.paperSummary.setOnClickListener {
             isExpanded = !isExpanded
-            binding.paperSummary.maxLines = if (isExpanded) Int.MAX_VALUE else 15
+            binding.paperSummary.maxLines = if (isExpanded) 28 else 15
             binding.paperSummary.ellipsize = if (isExpanded) null else TextUtils.TruncateAt.END
-            isExpanded = true
+            //isExpanded = true
         }
     }
 

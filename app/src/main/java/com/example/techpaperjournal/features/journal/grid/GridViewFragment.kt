@@ -150,7 +150,7 @@ class GridViewFragment: Fragment() {
                     "type" to "notes",
                     "title" to title,
                     "content" to "",
-                    "pageOrder" to size
+                    "pageOrder" to size + 1
                 )
             )
             dialog.dismiss()

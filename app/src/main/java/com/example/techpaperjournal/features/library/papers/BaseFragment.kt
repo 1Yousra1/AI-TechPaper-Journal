@@ -316,6 +316,9 @@ abstract class BaseFragment: Fragment() {
                 datePublishedEditText.error = "Please use format: Month Year (e.g. January 2023)"
                 isValid = false
             }
+        } else {
+            datePublishedEditText.error = "Publication date is required"
+            isValid = false
         }
 
         val hasTags = container.childCount > 1

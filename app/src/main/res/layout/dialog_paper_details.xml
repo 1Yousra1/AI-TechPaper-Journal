@@ -102,7 +102,6 @@
         android:layout_weight="1"
         android:layout_marginBottom="8dp"
         android:autofillHints="Title"
-        android:inputType="date"
         android:hint="@string/date_published_hint"
         android:textColor="@color/brown"
         android:textSize="16sp"
